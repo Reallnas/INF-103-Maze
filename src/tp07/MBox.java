@@ -2,9 +2,9 @@ package tp07;
 
 public abstract class MBox implements VertexInterface{
 
-    public int x;
-    public int y;
-    public Maze maze;
+    private int x;
+    private int y;
+    private Maze maze;
     
     public MBox(Maze maze, int x, int y) {
         this.maze = maze;
