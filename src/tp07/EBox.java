@@ -1,5 +1,5 @@
 package tp07;
 
-public class EBox {
+public class EBox extends MBox{
 
 }

@@ -1,5 +1,5 @@
 package tp07;
 
-public class WBox {
+public final class WBox extends MBox{
 
 }
