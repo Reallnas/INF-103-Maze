@@ -37,11 +37,9 @@ public class Maze implements GraphInterface{
     public int getWeight(VertexInterface src, VertexInterface dst) {
         MBox srcBox = (MBox) src;
         MBox dstBox = (MBox) dst;
-        if(!srcBox.isWalkable() || !dstBox.isWalkable())
+        if(!srcBox.isWalkable() || !dstBox.isWalkable() || !srcBox.isNeighboorWith(dstBox))
             return Integer.MAX_VALUE;
-        
-        if
+        else
+            return 1;
     }
-    
-    public 
 }
