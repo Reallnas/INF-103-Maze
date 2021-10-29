@@ -2,12 +2,15 @@ package tp07;
 
 public abstract class MBox {
 
-    public MBox(int x, int y) {
+    public int x;
+    public int y;
+    public Maze maze;
+    
+    public MBox(Maze maze, int x, int y) {
+        this.maze = maze;
         this.x = x;
         this.y = y;
     }
     
-    public int x;
-    public int y;
     public abstract boolean isWalkable();
 }
