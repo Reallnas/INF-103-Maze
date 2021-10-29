@@ -6,4 +6,9 @@ public final class DBox extends EBox {
         super(maze, x, y);
     }
 
+    @Override
+    public String getLabel()
+    {
+        return "Type:Départ, " + super.getLabel();
+    }
 }

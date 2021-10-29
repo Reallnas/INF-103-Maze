@@ -7,6 +7,12 @@ public final class WBox extends MBox{
         super(maze, x, y);
     }
 
+    @Override
+    public String getLabel()
+    {
+        return "Type:Wall, " + super.getLabel();
+    }
+    
     public boolean isWalkable()
     {
         return false;

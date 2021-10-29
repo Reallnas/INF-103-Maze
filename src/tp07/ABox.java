@@ -6,4 +6,9 @@ public final class ABox extends EBox {
         super(maze,x, y);
     }
 
+    @Override
+    public String getLabel()
+    {
+        return "Type:Arrivée, " + super.getLabel();
+    }
 }
