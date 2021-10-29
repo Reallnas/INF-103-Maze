@@ -1,15 +1,23 @@
 package tp07;
 
+import java.util.ArrayList;
+
 public interface GraphInterface {
 
     //Search if other is a successor of pivot
     public boolean isSuccessor(VertexInterface pivot, VertexInterface other);
     
-    /*Get the distance between two vertexes, 
-     *return +infinity if they are not linked
-     */
-    public int getDistance(VertexInterface x,VertexInterface y);
-    
-    //Return the number of vertexes in the graph
+    //Returns the number of vertices in the graph
     public int getSize();
+    
+    //Returns the list of all vertices in the graph
+    public ArrayList<VertexInterface> getAllVertices() ;
+    
+    //Returns the successors of a given vertex
+    public ArrayList<VertexInterface> getSuccessors(VertexInterface vertex) ;
+    
+    /* Returns the weight of the link between two vertices
+     * Returns +infinity if they are not linked
+     */
+    public int getWeight(VertexInterface src,VertexInterface dst) ;
 }

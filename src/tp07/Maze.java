@@ -2,7 +2,7 @@ package tp07;
 
 import java.util.ArrayList;
 
-public class Maze {
+public class Maze implements GraphInterface{
 
     public ArrayList<ArrayList<MBox>> grid;
     

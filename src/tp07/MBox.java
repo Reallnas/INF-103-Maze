@@ -1,6 +1,6 @@
 package tp07;
 
-public abstract class MBox {
+public abstract class MBox implements VertexInterface{
 
     public int x;
     public int y;
