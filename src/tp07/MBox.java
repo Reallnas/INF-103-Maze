@@ -17,5 +17,22 @@ public abstract class MBox implements VertexInterface{
         return "X:" + this.x + ", Y:"+ this.y;
     }
     
+    public int getX()
+    {
+        return this.x;
+    }
+    
+    public int getY()
+    {
+        return this.y;
+    }
+    
+    public boolean isNeighboorWith(MBox other)
+    {
+        final int diffX = Math.abs(this.x - other.x);
+        final int diffY = Math.abs(this.y - other.y);
+        return (diffX + diffY) <= 1;
+    }
+    
     public abstract boolean isWalkable();
 }
