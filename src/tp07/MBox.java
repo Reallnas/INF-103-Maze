@@ -27,7 +27,7 @@ public abstract class MBox implements VertexInterface{
         return this.y;
     }
     
-    public boolean isNeighboorWith(MBox other)
+    public boolean isNeighborWith(MBox other)
     {
         final int diffX = Math.abs(this.x - other.x);
         final int diffY = Math.abs(this.y - other.y);

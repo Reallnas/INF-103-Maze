@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public interface GraphInterface {
 
     //Search if other is a successor of pivot
-    public boolean isSuccessor(VertexInterface pivot, VertexInterface other);
+    public boolean isSuccessor(VertexInterface src, VertexInterface dst);
     
     //Returns the number of vertices in the graph
     public int getSize();
