@@ -6,8 +6,8 @@ import java.io.*;
 public class Maze implements GraphInterface{
 
     private ArrayList<ArrayList<MBox>> boxGrid;
-    private int horizontalSize;
-    private int verticalSize;
+    private int horizontalSize = 0;
+    private int verticalSize = 0;
 
     @Override
     public boolean isSuccessor(VertexInterface src, VertexInterface dst) {
@@ -88,17 +88,55 @@ public class Maze implements GraphInterface{
     {
         FileReader fr = null;
         BufferedReader br = null;
+        
         try {
             fr = new FileReader(fileName);
             br = new BufferedReader(fr);
             String str = br.readLine();
+            int nbLine = 0;
             while (str != null)
             {
                 System.out.println(str);
+                nbLine += 1;
+                int nbColumn = str.length();
+                if(horizontalSize == 0)
+                {
+                    horizontalSize = nbColumn;
+                    
+                    //TODO: fix the fact that it doesn't reserve the capacity that was asked
+                    boxGrid = new ArrayList<ArrayList<MBox>>(nbColumn);
+                    boxGrid.add(new ArrayList<MBox>());
+                }
+                else if(nbColumn != horizontalSize)
+                    throw new MazeReadingException("Error: Maze has varying line size",fileName,nbLine);
+                
+                System.out.println(horizontalSize);
+                System.out.println(boxGrid);
+                for(int i = 0; i < str.length(); i++)
+                {
+                    final char currentCharacter = str.charAt(i);
+                    if(currentCharacter == 'E')
+                    {
+                        boxGrid.get(i).add(new EBox(this,i,nbLine-1));
+                    } else if(currentCharacter == 'W')
+                    {
+                        boxGrid.get(i).add(new WBox(this,i,nbLine-1));
+                    } else if(currentCharacter == 'A')
+                    {
+                        boxGrid.get(i).add(new ABox(this,i,nbLine-1));
+                    } else if(currentCharacter == 'D')
+                    {
+                        boxGrid.get(i).add(new DBox(this,i,nbLine-1));
+                    } else
+                        throw new MazeReadingException("Error: Unknown box type: " + currentCharacter,fileName,nbLine);
+                }
                 str = br.readLine();
             } 
         
-        } catch (Exception e) {
+        } catch (MazeReadingException mre) {
+            System.out.print(mre);
+        }
+        catch (Exception e) {
             System.out.print(e);
         }
         finally 
