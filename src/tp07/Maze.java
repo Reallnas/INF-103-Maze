@@ -94,7 +94,8 @@ public class Maze implements GraphInterface{
             String str = br.readLine();
             while (str != null)
             {
-                System.out.print(str);
+                System.out.println(str);
+                str = br.readLine();
             } 
         
         } catch (Exception e) {
