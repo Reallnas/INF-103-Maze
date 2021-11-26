@@ -1,6 +1,7 @@
 package tp07;
 
 import java.util.ArrayList;
+import java.io.*;
 
 public class Maze implements GraphInterface{
 
@@ -40,7 +41,7 @@ public class Maze implements GraphInterface{
         return vertices;
     }
 
-    //Return an ArrayList of all the empty boxes that are connected to the MBox passed in argument
+    //Returns an ArrayList of all the empty boxes that are connected to the MBox passed in argument
     @Override
     public ArrayList<VertexInterface> getSuccessors(VertexInterface vertex) {
         MBox vBox = (MBox) vertex;
@@ -87,5 +88,28 @@ public class Maze implements GraphInterface{
             return Integer.MAX_VALUE;
         else
             return 1;
+    }
+    
+    public final void initFromTextFile(String fileName)
+    {
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            fr = new FileReader(fileName);
+            br = new BufferedReader(fr);
+            String str = br.readLine();
+            while (str != null)
+            {
+                System.out.print(str);
+            } 
+        
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+        finally 
+        {
+            try { fr.close() ; } catch (Exception e) {} ;
+            try { br.close() ; } catch (Exception e) {} ;
+        }
     }
 }
