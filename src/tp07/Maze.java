@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Maze implements GraphInterface{
 
-    public ArrayList<ArrayList<MBox>> boxGrid;
-    public int horizontalSize;
-    public int verticalSize;
+    private ArrayList<ArrayList<MBox>> boxGrid;
+    private int horizontalSize;
+    private int verticalSize;
     
     public Maze(ArrayList<ArrayList<MBox>> grid) {
         this.boxGrid = grid;
@@ -24,6 +24,7 @@ public class Maze implements GraphInterface{
             return true;
     }
 
+    //Return the number of boxes in the maze
     @Override
     public int getSize() {
         return horizontalSize*verticalSize;
@@ -39,6 +40,7 @@ public class Maze implements GraphInterface{
         return vertices;
     }
 
+    //Return an ArrayList of all the empty boxes that are connected to the MBox passed in argument
     @Override
     public ArrayList<VertexInterface> getSuccessors(VertexInterface vertex) {
         MBox vBox = (MBox) vertex;
