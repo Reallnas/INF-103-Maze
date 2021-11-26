@@ -8,12 +8,6 @@ public class Maze implements GraphInterface{
     private ArrayList<ArrayList<MBox>> boxGrid;
     private int horizontalSize;
     private int verticalSize;
-    
-    public Maze(ArrayList<ArrayList<MBox>> grid) {
-        this.boxGrid = grid;
-        this.horizontalSize = grid.size();
-        this.verticalSize = grid.get(0).size();
-    }
 
     @Override
     public boolean isSuccessor(VertexInterface src, VertexInterface dst) {
