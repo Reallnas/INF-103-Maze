@@ -5,9 +5,13 @@ import java.util.ArrayList;
 public class Maze implements GraphInterface{
 
     public ArrayList<ArrayList<MBox>> boxGrid;
+    public int horizontalSize;
+    public int verticalSize;
     
     public Maze(ArrayList<ArrayList<MBox>> grid) {
         this.boxGrid = grid;
+        this.horizontalSize = grid.size();
+        this.verticalSize = grid.get(0).size();
     }
 
     @Override
@@ -22,13 +26,17 @@ public class Maze implements GraphInterface{
 
     @Override
     public int getSize() {
-        return boxGrid.size()*boxGrid.get(0).size();
+        return horizontalSize*verticalSize;
     }
 
     @Override
     public ArrayList<VertexInterface> getAllVertices() {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<VertexInterface> vertices = new ArrayList<VertexInterface>(getSize());
+        for(int i = 0; i < horizontalSize; i++)
+        {
+            vertices.addAll(verticalSize*i, boxGrid.get(i));
+        }
+        return vertices;
     }
 
     @Override
@@ -40,15 +48,15 @@ public class Maze implements GraphInterface{
        {
            MBox leftNeighbor = boxGrid.get(vBox.getX()-1).get(vBox.getY());
            //Look up if the left neighbor is an empty box
-           if(leftNeighbor.isWalkable())
+           if(isSuccessor(vBox,leftNeighbor))
                successors.add(leftNeighbor);
        }
 
-       if(vBox.getX()<boxGrid.size())
+       if(vBox.getX()<horizontalSize)
        {
            MBox rightNeighbor = boxGrid.get(vBox.getX()+1).get(vBox.getY());
          //Look up if the right neighbor is an empty box
-           if(rightNeighbor.isWalkable())
+           if(isSuccessor(vBox,rightNeighbor))
                successors.add(rightNeighbor);
        }
        
@@ -56,15 +64,15 @@ public class Maze implements GraphInterface{
        {
            MBox upNeighbor = boxGrid.get(vBox.getX()).get(vBox.getY()-1);
          //Look up if the upper neighbor is an empty box
-           if(upNeighbor.isWalkable())
+           if(isSuccessor(vBox,upNeighbor))
                successors.add(upNeighbor);
        }
        
-       if(vBox.getY()<boxGrid.get(0).size())
+       if(vBox.getY()<verticalSize)
        {
            MBox downNeighbor = boxGrid.get(vBox.getX()).get(vBox.getY()+1);
          //Look up if the lower neighbor is an empty box
-           if(downNeighbor.isWalkable())
+           if(isSuccessor(vBox,downNeighbor))
                successors.add(downNeighbor);
        }
        
