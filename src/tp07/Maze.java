@@ -162,7 +162,7 @@ public class Maze implements GraphInterface{
             {
                 for(int x = 0; x <this.horizontalSize; x++)
                 {
-                    System.out.print(this.boxGrid.get(x).get(y).getFileRepresentation());
+                    //System.out.print(this.boxGrid.get(x).get(y).getFileRepresentation());
                     pw.print(this.boxGrid.get(x).get(y).getFileRepresentation());
                 }
                 pw.println();
