@@ -96,23 +96,22 @@ public class Maze implements GraphInterface{
             int nbLine = 0;
             while (str != null)
             {
-                System.out.println(str);
+                //System.out.println(str);
                 nbLine += 1;
                 int nbColumn = str.length();
                 if(horizontalSize == 0)
                 {
                     horizontalSize = nbColumn;
-                    
-                    //TODO: fix the fact that it doesn't reserve the capacity that was asked
-                    boxGrid = new ArrayList<ArrayList<MBox>>(nbColumn);
-                    boxGrid.add(new ArrayList<MBox>());
+                    boxGrid = new ArrayList<ArrayList<MBox>>();
+                    for(int i = 0; i < nbColumn; i++)
+                    {
+                        boxGrid.add(new ArrayList<MBox>());
+                    }
                 }
                 else if(nbColumn != horizontalSize)
                     throw new MazeReadingException("Error: Maze has varying line size",fileName,nbLine);
                 
-                System.out.println(horizontalSize);
-                System.out.println(boxGrid);
-                for(int i = 0; i < str.length(); i++)
+                for(int i = 0; i < horizontalSize; i++)
                 {
                     final char currentCharacter = str.charAt(i);
                     if(currentCharacter == 'E')
@@ -130,6 +129,7 @@ public class Maze implements GraphInterface{
                     } else
                         throw new MazeReadingException("Error: Unknown box type: " + currentCharacter,fileName,nbLine);
                 }
+                //System.out.println(boxGrid);
                 str = br.readLine();
             } 
         

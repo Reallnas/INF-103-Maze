@@ -35,4 +35,9 @@ public abstract class MBox implements VertexInterface{
     }
     
     public abstract boolean isWalkable();
+    
+    public String toString()
+    {
+        return this.getLabel();
+    }
 }
