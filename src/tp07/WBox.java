@@ -17,5 +17,10 @@ public final class WBox extends MBox{
     {
         return false;
     }
-
+    
+    @Override
+    public char getFileRepresentation()
+    {
+        return 'W';
+    }
 }

@@ -40,4 +40,6 @@ public abstract class MBox implements VertexInterface{
     {
         return this.getLabel();
     }
+    
+    public abstract char getFileRepresentation();
 }

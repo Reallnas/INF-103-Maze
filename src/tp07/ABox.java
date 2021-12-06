@@ -11,4 +11,10 @@ public final class ABox extends EBox {
     {
         return "Type:Arrivée, " + super.getLabel();
     }
+    
+    @Override
+    public char getFileRepresentation()
+    {
+        return 'A';
+    }
 }

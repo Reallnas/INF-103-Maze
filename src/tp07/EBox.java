@@ -17,4 +17,9 @@ public class EBox extends MBox{
         return true;
     }
 
+    @Override
+    public char getFileRepresentation()
+    {
+        return 'E';
+    }
 }

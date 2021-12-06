@@ -132,6 +132,7 @@ public class Maze implements GraphInterface{
                 //System.out.println(boxGrid);
                 str = br.readLine();
             } 
+            this.verticalSize = nbLine;
         
         } catch (MazeReadingException mre) {
             System.out.print(mre);
@@ -143,6 +144,38 @@ public class Maze implements GraphInterface{
         {
             try { fr.close() ; } catch (Exception e) {} ;
             try { br.close() ; } catch (Exception e) {} ;
+        }
+    }
+    
+    public final void saveToTextFile(String fileName)
+    {
+        FileOutputStream fos = null;
+        PrintWriter pw = null;
+        try
+        {
+            fos = new FileOutputStream(fileName) ;
+            pw = new PrintWriter(fos);
+            
+            //System.out.print(this.horizontalSize);
+            //System.out.print(this.verticalSize);
+            for(int y = 0; y <this.verticalSize; y++)
+            {
+                for(int x = 0; x <this.horizontalSize; x++)
+                {
+                    System.out.print(this.boxGrid.get(x).get(y).getFileRepresentation());
+                    pw.print(this.boxGrid.get(x).get(y).getFileRepresentation());
+                }
+                pw.println();
+            }
+            pw.flush();
+        }
+        catch (Exception e) {
+            System.out.print(e);
+        }
+        finally 
+        {
+            try { fos.close() ; } catch (Exception e) {} ;
+            try { pw.close() ; } catch (Exception e) {} ;
         }
     }
 }

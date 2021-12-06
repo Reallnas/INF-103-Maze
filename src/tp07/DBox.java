@@ -11,4 +11,10 @@ public final class DBox extends EBox {
     {
         return "Type:Départ, " + super.getLabel();
     }
+    
+    @Override
+    public char getFileRepresentation()
+    {
+        return 'D';
+    }
 }
