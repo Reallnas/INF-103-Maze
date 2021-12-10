@@ -3,8 +3,8 @@ package dijkstra;
 public interface PreviousInterface {
 
     //Set the father of a given vertex
-    public void setFather(VertexInterface v);
+    public void setFather(VertexInterface son, VertexInterface father);
     
     //Get the father of a given vertex
-    public VertexInterface getFather(VertexInterface v);
+    public VertexInterface getFather(VertexInterface son);
 }
