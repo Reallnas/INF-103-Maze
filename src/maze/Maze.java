@@ -9,9 +9,21 @@ import java.io.*;
 public class Maze implements GraphInterface{
 
     private ArrayList<ArrayList<MBox>> boxGrid;
+    private ABox goal = null;
+    private DBox root = null;
     private int horizontalSize = 0;
     private int verticalSize = 0;
 
+    public VertexInterface getRoot()
+    {
+        return this.root;
+    }
+    
+    public VertexInterface getGoal()
+    {
+        return this.goal;
+    }
+    
     @Override
     public boolean isSuccessor(VertexInterface src, VertexInterface dst) {
         MBox srcBox = (MBox) src;
@@ -125,10 +137,12 @@ public class Maze implements GraphInterface{
                         boxGrid.get(i).add(new WBox(this,i,nbLine-1));
                     } else if(currentCharacter == 'A')
                     {
-                        boxGrid.get(i).add(new ABox(this,i,nbLine-1));
+                        this.goal = new ABox(this,i,nbLine-1);
+                        boxGrid.get(i).add(this.goal);
                     } else if(currentCharacter == 'D')
                     {
-                        boxGrid.get(i).add(new DBox(this,i,nbLine-1));
+                        this.root = new DBox(this,i,nbLine-1);
+                        boxGrid.get(i).add(this.root);
                     } else
                         throw new MazeReadingException("Error: Unknown box type: " + currentCharacter,fileName,nbLine);
                 }
@@ -179,6 +193,24 @@ public class Maze implements GraphInterface{
         {
             try { fos.close() ; } catch (Exception e) {} ;
             try { pw.close() ; } catch (Exception e) {} ;
+        }
+    }
+    
+    public final void printWithPath(ASet path)
+    {
+      //System.out.print(this.horizontalSize);
+        //System.out.print(this.verticalSize);
+        for(int y = 0; y <this.verticalSize; y++)
+        {
+            for(int x = 0; x <this.horizontalSize; x++)
+            {
+                MBox current = this.boxGrid.get(x).get(y);
+                char representation = current.getFileRepresentation();
+                if(path.contains(current))
+                    representation = '.';
+                System.out.print(representation);
+            }
+            System.out.println();
         }
     }
 }

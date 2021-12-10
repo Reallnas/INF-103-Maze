@@ -9,6 +9,7 @@ public class Pi implements PiInterface {
     
     public Pi(GraphInterface g, VertexInterface pivot)
     {
+        this.distances = new Hashtable<VertexInterface,Integer>();
         this.initialize(g, pivot);
     }
     
