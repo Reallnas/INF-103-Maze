@@ -1,4 +1,4 @@
-package tp07;
+package maze;
 
 public class MazeReadingException extends Exception {
 

@@ -1,4 +1,4 @@
-package tp07;
+package maze;
 
 import java.util.ArrayList;
 

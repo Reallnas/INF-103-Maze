@@ -1,4 +1,4 @@
-package tp07;
+package maze;
 
 public final class DBox extends EBox {
 
