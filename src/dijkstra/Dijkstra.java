@@ -2,7 +2,7 @@ package dijkstra;
 
 public class Dijkstra {
     
-    private PreviousInterface dijkstra(GraphInterface g, VertexInterface r, 
+    private static PreviousInterface dijkstra(GraphInterface g, VertexInterface r, 
             ASetInterface a, PiInterface pi, PreviousInterface previous)
     {
         int n = g.getSize();
@@ -20,6 +20,9 @@ public class Dijkstra {
     
     public static PreviousInterface dijkstra(GraphInterface g, VertexInterface r)
     {
-        
+        Previous prev = new Previous();
+        Pi pi = new Pi(g,r);
+        ASet aset = new ASet();
+        return dijkstra(g,r,aset,pi,prev);
     }
 }
