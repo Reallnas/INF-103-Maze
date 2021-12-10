@@ -1,5 +1,7 @@
 package tp07;
 
+import dijkstra.*;
+
 public abstract class MBox implements VertexInterface{
 
     private int x;

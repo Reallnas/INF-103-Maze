@@ -1,4 +1,4 @@
-package tp07;
+package dijkstra;
 
 public interface PiInterface {
 

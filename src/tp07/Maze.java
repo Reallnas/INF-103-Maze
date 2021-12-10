@@ -1,6 +1,9 @@
 package tp07;
 
 import java.util.ArrayList;
+
+import dijkstra.*;
+
 import java.io.*;
 
 public class Maze implements GraphInterface{
