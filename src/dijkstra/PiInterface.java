@@ -20,5 +20,9 @@ public interface PiInterface {
      */
     public VertexInterface getMinimallyEvaluatedVertex(ASetInterface aset);
     
-    public void evaluateSuccessorsNotinA(ASetInterface a, PreviousInterface p, VertexInterface pivot);
+    /*Set the evaluation of the successors of pivot that are not in aset to the lowest one between 
+     * their current evaluation and the evaluation from the pivot and change their father accordingly
+     * 
+     */
+    public void evaluateSuccessorsNotinA(ASetInterface aset, PreviousInterface p, VertexInterface pivot);
 }
