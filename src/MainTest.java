@@ -7,18 +7,18 @@ public class MainTest {
         Maze m = new Maze();
         m.initFromTextFile("data/labyrinthe.txt");
         m.saveToTextFile("data/labyrinthe2.txt");
-        VertexInterface root = m.getRoot();
-        PreviousInterface p = Dijkstra.dijkstra(m, root);
         
-        ASet path = new ASet();
-        VertexInterface current = m.getGoal();
-        while(!path.contains(root))
-        {
-            path.add(current);
-            current = p.getFather(current);
-        }
-        
-        m.printWithPath(path);
+        testMaze("data/labyrinthe_vide.txt");
+        testMaze("data/labyrinthe_1_mur.txt");
+        testMaze("data/labyrinthe.txt");
     }
 
+    private static void testMaze(String filename)
+    {
+        Maze m = new Maze();
+        m.initFromTextFile(filename);
+        PreviousInterface p = Dijkstra.dijkstra(m, m.getRoot());
+        m.printWithPath(p);
+        System.out.println();
+    }
 }

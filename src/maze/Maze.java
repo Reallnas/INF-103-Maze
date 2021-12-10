@@ -93,10 +93,22 @@ public class Maze implements GraphInterface{
 
     @Override
     public int getWeight(VertexInterface src, VertexInterface dst) {
-        if(isSuccessor(src,dst))
+        if(!isSuccessor(src,dst))
             return Integer.MAX_VALUE;
         else
             return 1;
+    }
+    
+    public ASetInterface getPathToGoal(PreviousInterface p)
+    {
+        ASet path = new ASet();
+        VertexInterface current = this.goal;
+        while(!path.contains(this.root))
+        {
+            path.add(current);
+            current = p.getFather(current);
+        }
+        return path;
     }
     
     public final void initFromTextFile(String fileName)
@@ -196,7 +208,7 @@ public class Maze implements GraphInterface{
         }
     }
     
-    public final void printWithPath(ASet path)
+    public final void printWithPath(ASetInterface path)
     {
         for(int y = 0; y <this.verticalSize; y++)
         {
@@ -210,5 +222,10 @@ public class Maze implements GraphInterface{
             }
             System.out.println();
         }
+    }
+    
+    public final void printWithPath(PreviousInterface p)
+    {
+        this.printWithPath(this.getPathToGoal(p));
     }
 }
