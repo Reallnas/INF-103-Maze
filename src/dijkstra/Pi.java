@@ -2,21 +2,21 @@ package dijkstra;
 
 import java.util.*;
 
-public class Pi implements PiInterface {
+public final class Pi implements PiInterface {
 
-    private Hashtable<VertexInterface,Integer> distances;
-    private GraphInterface graph;
+    private final Hashtable<VertexInterface,Integer> distances;
+    private final GraphInterface graph;
     
     public Pi(GraphInterface g, VertexInterface pivot)
     {
         this.distances = new Hashtable<VertexInterface,Integer>();
+        this.graph = g;
         this.initialize(g, pivot);
     }
     
     @Override
-    public void initialize(GraphInterface g, VertexInterface pivot) {
-        this.graph = g;
-        ArrayList<VertexInterface> vertices = g.getAllVertices();
+    public final void initialize(GraphInterface g, VertexInterface pivot) {
+        ArrayList<VertexInterface> vertices = this.graph.getAllVertices();
         for(VertexInterface v : vertices)
         {
             this.distances.put(v, Integer.MAX_VALUE);
@@ -25,17 +25,17 @@ public class Pi implements PiInterface {
     }
 
     @Override
-    public int getDistance(VertexInterface v) {
+    public final int getDistance(VertexInterface v) {
         return this.distances.get(v);
     }
 
     @Override
-    public void setDistance(VertexInterface v, int value) {
+    public final void setDistance(VertexInterface v, int value) {
         this.distances.put(v, value);
     }
 
     @Override
-    public VertexInterface getMinimallyEvaluatedVertex(ASetInterface aset) {
+    public final VertexInterface getMinimallyEvaluatedVertex(ASetInterface aset) {
         Set<Map.Entry<VertexInterface,Integer>> vertices = this.distances.entrySet();
         Map.Entry<VertexInterface,Integer> min = null;
         for(Map.Entry<VertexInterface,Integer> pair : vertices)
@@ -50,7 +50,7 @@ public class Pi implements PiInterface {
     }
 
     @Override
-    public void evaluateSuccessorsNotinA(ASetInterface aset, PreviousInterface p, VertexInterface pivot) {
+    public final void evaluateSuccessorsNotinA(ASetInterface aset, PreviousInterface p, VertexInterface pivot) {
         ArrayList<VertexInterface> successors = this.graph.getSuccessors(pivot);
         for(VertexInterface successor : successors)
         {

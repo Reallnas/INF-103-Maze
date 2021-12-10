@@ -1,8 +1,8 @@
 package dijkstra;
 
-public class Dijkstra {
+public final class Dijkstra {
     
-    private static PreviousInterface dijkstra(GraphInterface g, VertexInterface r, 
+    private final static PreviousInterface dijkstra(GraphInterface g, VertexInterface r, 
             ASetInterface a, PiInterface pi, PreviousInterface previous)
     {
         int n = g.getSize();
@@ -18,7 +18,7 @@ public class Dijkstra {
         return previous;
     }
     
-    public static PreviousInterface dijkstra(GraphInterface g, VertexInterface r)
+    public final static PreviousInterface dijkstra(GraphInterface g, VertexInterface r)
     {
         Previous prev = new Previous();
         Pi pi = new Pi(g,r);
