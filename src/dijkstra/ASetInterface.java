@@ -6,5 +6,5 @@ public interface ASetInterface {
     public boolean add(VertexInterface v);
     
     //Search if a given vertex is part of the set
-    public boolean contains(VertexInterface v);
+    public boolean contains(Object o);
 }

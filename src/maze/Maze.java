@@ -56,7 +56,7 @@ public class Maze implements GraphInterface{
         MBox vBox = (MBox) vertex;
         ArrayList<VertexInterface> successors = new ArrayList<VertexInterface>();
        
-       if(vBox.getX()>=0)
+       if(vBox.getX()>0)
        {
            MBox leftNeighbor = boxGrid.get(vBox.getX()-1).get(vBox.getY());
            //Look up if the left neighbor is an empty box
@@ -64,7 +64,7 @@ public class Maze implements GraphInterface{
                successors.add(leftNeighbor);
        }
 
-       if(vBox.getX()<horizontalSize)
+       if(vBox.getX()<horizontalSize-1)
        {
            MBox rightNeighbor = boxGrid.get(vBox.getX()+1).get(vBox.getY());
          //Look up if the right neighbor is an empty box
@@ -72,7 +72,7 @@ public class Maze implements GraphInterface{
                successors.add(rightNeighbor);
        }
        
-       if(vBox.getY()>=0)
+       if(vBox.getY()>0)
        {
            MBox upNeighbor = boxGrid.get(vBox.getX()).get(vBox.getY()-1);
          //Look up if the upper neighbor is an empty box
@@ -80,7 +80,7 @@ public class Maze implements GraphInterface{
                successors.add(upNeighbor);
        }
        
-       if(vBox.getY()<verticalSize)
+       if(vBox.getY()<verticalSize-1)
        {
            MBox downNeighbor = boxGrid.get(vBox.getX()).get(vBox.getY()+1);
          //Look up if the lower neighbor is an empty box
@@ -198,8 +198,6 @@ public class Maze implements GraphInterface{
     
     public final void printWithPath(ASet path)
     {
-      //System.out.print(this.horizontalSize);
-        //System.out.print(this.verticalSize);
         for(int y = 0; y <this.verticalSize; y++)
         {
             for(int x = 0; x <this.horizontalSize; x++)
