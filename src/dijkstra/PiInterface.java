@@ -24,5 +24,5 @@ public interface PiInterface {
      * their current evaluation and the evaluation from the pivot and change their father accordingly
      * 
      */
-    public void evaluateSuccessorsNotinA(ASetInterface aset, PreviousInterface p, VertexInterface pivot);
+    public void evaluateSuccessorsNotInA(ASetInterface aset, PreviousInterface p, VertexInterface pivot);
 }

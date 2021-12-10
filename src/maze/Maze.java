@@ -18,20 +18,12 @@ public class Maze implements GraphInterface{
     {
         return this.root;
     }
-    
-    public VertexInterface getGoal()
-    {
-        return this.goal;
-    }
-    
+
     @Override
     public boolean isSuccessor(VertexInterface src, VertexInterface dst) {
         MBox srcBox = (MBox) src;
         MBox dstBox = (MBox) dst;
-        if(!srcBox.isWalkable() || !dstBox.isWalkable() || !srcBox.isNeighborWith(dstBox))
-            return false;
-        else
-            return true;
+        return srcBox.isWalkable() && dstBox.isWalkable() && srcBox.isNeighborWith(dstBox);
     }
 
     //Return the number of boxes in the maze
@@ -171,8 +163,8 @@ public class Maze implements GraphInterface{
         }
         finally 
         {
-            try { fr.close() ; } catch (Exception e) {} ;
-            try { br.close() ; } catch (Exception e) {} ;
+            try { fr.close() ; } catch (Exception e) {}
+            try { br.close() ; } catch (Exception e) {}
         }
     }
     
@@ -203,8 +195,8 @@ public class Maze implements GraphInterface{
         }
         finally 
         {
-            try { fos.close() ; } catch (Exception e) {} ;
-            try { pw.close() ; } catch (Exception e) {} ;
+            try { fos.close() ; } catch (Exception e) {}
+            try { pw.close() ; } catch (Exception e) {}
         }
     }
     

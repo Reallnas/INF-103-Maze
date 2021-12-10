@@ -11,7 +11,7 @@ public final class Dijkstra {
         pi.initialize(g,r);
         for(int j = 1; j <= n-1; j++)
         {
-            pi.evaluateSuccessorsNotinA(a, previous, pivot);
+            pi.evaluateSuccessorsNotInA(a, previous, pivot);
             pivot = pi.getMinimallyEvaluatedVertex(a);
             a.add(pivot);
         }

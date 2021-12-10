@@ -50,7 +50,7 @@ public final class Pi implements PiInterface {
     }
 
     @Override
-    public final void evaluateSuccessorsNotinA(ASetInterface aset, PreviousInterface p, VertexInterface pivot) {
+    public final void evaluateSuccessorsNotInA(ASetInterface aset, PreviousInterface p, VertexInterface pivot) {
         ArrayList<VertexInterface> successors = this.graph.getSuccessors(pivot);
         for(VertexInterface successor : successors)
         {
