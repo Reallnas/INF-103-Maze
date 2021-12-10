@@ -17,4 +17,9 @@ public class Dijkstra {
         }
         return previous;
     }
+    
+    public static PreviousInterface dijkstra(GraphInterface g, VertexInterface r)
+    {
+        
+    }
 }

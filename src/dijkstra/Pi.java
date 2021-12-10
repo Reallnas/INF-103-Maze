@@ -7,6 +7,11 @@ public class Pi implements PiInterface {
     private Hashtable<VertexInterface,Integer> distances;
     private GraphInterface graph;
     
+    public Pi(GraphInterface g, VertexInterface pivot)
+    {
+        this.initialize(g, pivot);
+    }
+    
     @Override
     public void initialize(GraphInterface g, VertexInterface pivot) {
         this.graph = g;
