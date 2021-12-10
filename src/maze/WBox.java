@@ -8,18 +8,18 @@ public final class WBox extends MBox{
     }
 
     @Override
-    public String getLabel()
+    public final String getLabel()
     {
         return "Type:Wall, " + super.getLabel();
     }
     
-    public boolean isWalkable()
+    public final boolean isWalkable()
     {
         return false;
     }
     
     @Override
-    public char getFileRepresentation()
+    public final char getFileRepresentation()
     {
         return 'W';
     }

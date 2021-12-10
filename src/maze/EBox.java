@@ -12,7 +12,7 @@ public class EBox extends MBox{
         return "Type:Empty, " + super.getLabel();
     }
     
-    public boolean isWalkable()
+    public final boolean isWalkable()
     {
         return true;
     }

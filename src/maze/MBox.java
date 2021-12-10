@@ -4,9 +4,9 @@ import dijkstra.*;
 
 public abstract class MBox implements VertexInterface{
 
-    private int x;
-    private int y;
-    private Maze maze;
+    private final int x;
+    private final int y;
+    private final Maze maze;
     
     public MBox(Maze maze, int x, int y) {
         this.maze = maze;
@@ -19,17 +19,17 @@ public abstract class MBox implements VertexInterface{
         return "X:" + this.x + ", Y:"+ this.y;
     }
     
-    public int getX()
+    public final int getX()
     {
         return this.x;
     }
     
-    public int getY()
+    public final int getY()
     {
         return this.y;
     }
     
-    public boolean isNeighborWith(MBox other)
+    public final boolean isNeighborWith(MBox other)
     {
         final int diffX = Math.abs(this.x - other.x);
         final int diffY = Math.abs(this.y - other.y);
