@@ -1,5 +1,6 @@
 package dijkstra;
 
-import java.util.*;
+import java.util.HashSet;
 
-public final class ASet extends HashSet<VertexInterface> implements ASetInterface {}
+public final class ASet extends HashSet<VertexInterface> implements ASetInterface {
+}

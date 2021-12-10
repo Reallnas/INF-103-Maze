@@ -1,25 +1,22 @@
 package maze;
 
-public class EBox extends MBox{
-    
+public class EBox extends MBox {
+
     public EBox(Maze maze, int x, int y) {
-        super(maze,x, y);
+        super(maze, x, y);
     }
-    
+
     @Override
-    public String getLabel()
-    {
+    public String getLabel() {
         return "Type:Empty, " + super.getLabel();
     }
-    
-    public final boolean isWalkable()
-    {
+
+    public final boolean isWalkable() {
         return true;
     }
 
     @Override
-    public char getFileRepresentation()
-    {
+    public char getFileRepresentation() {
         return 'E';
     }
 }
