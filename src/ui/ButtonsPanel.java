@@ -5,17 +5,17 @@ import java.awt.*;
 
 public class ButtonsPanel extends JPanel {
 
+    private final LoadButton loadButton;
+    private final SaveButton saveButton;
+    private final FindPathButton findPathButton;
+
     public ButtonsPanel(MainWindow mainWindow) {
         setLayout(new GridLayout(1, 3));
 
-        /*add(colorIndicator = new ColorIndicator     (drawingApp)) ;
-        add(colorChooser   = new ColorChooserButton (drawingApp)) ;
-        add(eraseSegment   = new EraseSegmentButton (drawingApp)) ;*/
+        add(loadButton = new LoadButton(mainWindow));
+        add(saveButton = new SaveButton(mainWindow));
+        add(findPathButton = new FindPathButton(mainWindow));
     }
-
-    /*private final ColorIndicator     colorIndicator ;
-    private final ColorChooserButton colorChooser ;
-    private final EraseSegmentButton eraseSegment ;*/
 
     public void notifyForUpdate() {
         //colorIndicator.notifyForUpdate() ;
