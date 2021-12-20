@@ -1,6 +1,7 @@
 import dijkstra.Dijkstra;
 import dijkstra.PreviousInterface;
 import maze.Maze;
+import ui.MainWindow;
 
 public class MainTest {
 
@@ -12,6 +13,8 @@ public class MainTest {
         testMaze("data/labyrinthe_vide.txt");
         testMaze("data/labyrinthe_1_mur.txt");
         testMaze("data/labyrinthe.txt");
+
+        MainWindow mw = new MainWindow();
     }
 
     private static void testMaze(String filename) {
