@@ -1,24 +1,22 @@
-package ui ;
+package ui;
 
-import javax.swing.* ;
-import java.awt.* ;
-import java.awt.event.* ;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 //import model.* ;
 
-public class QuitMenuItem extends JMenuItem implements ActionListener
-{
-    private final MainWindow mainWindow ;
+public class QuitMenuItem extends JMenuItem implements ActionListener {
 
-    public QuitMenuItem(MainWindow mainWindow)
-    {
-        super("Quit") ;
-        this.mainWindow = mainWindow ;
-        addActionListener(this) ;
+    private final MainWindow mainWindow;
+
+    public QuitMenuItem(MainWindow mainWindow) {
+        super("Quit");
+        this.mainWindow = mainWindow;
+        addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent evt)
-    {
+    public void actionPerformed(ActionEvent evt) {
         /*DrawingAppModel drawingAppModel = mainWindow.getDrawingAppModel() ;
 
         if (drawingAppModel.isModified()) {
@@ -38,6 +36,6 @@ public class QuitMenuItem extends JMenuItem implements ActionListener
                     break ;
             }
         }*/
-        System.exit(0) ;
+        System.exit(0);
     }
 }
