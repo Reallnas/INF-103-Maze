@@ -17,4 +17,11 @@ public class MazePanel extends JPanel {
     public void notifyForUpdate() {
 
     }
+
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g) ;
+        mainWindow.getMazeModel().paintBoxes(g) ;
+    }
 }
