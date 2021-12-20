@@ -17,6 +17,7 @@ public class MainWindow extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
+        //setResizable(false);
         setVisible(true);
     }
 
@@ -27,5 +28,4 @@ public class MainWindow extends JFrame {
     public void setMazeModel(MazeModel mazeModel) {
         this.mazeModel = mazeModel;
     }
-
 }
