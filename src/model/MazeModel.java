@@ -15,13 +15,15 @@ public class MazeModel {
     private int nb_box_x = 10;
     //The number of box in a column
     private int nb_box_y = 10;
+    private float boxWidth = 80;
+    private float boxHeight = 80;
 
     public MazeModel() {
         boxes = new ArrayList<>();
         for (int i = 0; i < nb_box_x; i++) {
             boxes.add(new ArrayList<>());
             for(int j = 0; j < nb_box_y; j++) {
-                boxes.get(i).add(new MazeBox(i*50,j*50,50,50,Color.BLACK));
+                boxes.get(i).add(new MazeBox(i*boxWidth,j*boxHeight,boxWidth,boxHeight,Color.BLACK));
             }
         }
     }
@@ -31,8 +33,8 @@ public class MazeModel {
     }
 
     public void notifyWindowSizeChange(float width, float height) {
-        float boxWidth = width/nb_box_x;
-        float boxHeight = height/nb_box_y;
+        boxWidth = width/nb_box_x;
+        boxHeight = height/nb_box_y;
         for (int x = 0; x < nb_box_x; x++) {
             for(int y = 0; y < nb_box_y; y++) {
                 boxes.get(x).get(y).setRect(x*boxWidth,y*boxHeight,boxWidth,boxHeight);

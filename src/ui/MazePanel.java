@@ -11,7 +11,7 @@ public class MazePanel extends JPanel {
     public MazePanel(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         setBackground(Color.WHITE);
-        setPreferredSize(new Dimension(500, 500));
+        setPreferredSize(new Dimension(800, 800));
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
