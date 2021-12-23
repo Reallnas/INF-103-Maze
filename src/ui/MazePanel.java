@@ -2,7 +2,8 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class MazePanel extends JPanel {
 
@@ -12,6 +13,7 @@ public class MazePanel extends JPanel {
         this.mainWindow = mainWindow;
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(800, 800));
+        addMouseListener(new MazePanelMouseListener(mainWindow));
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
@@ -23,7 +25,7 @@ public class MazePanel extends JPanel {
 
     public void notifyWindowSizeChange() {
         Dimension dimension = getSize();
-        this.mainWindow.getMazeModel().notifyWindowSizeChange(dimension.width,dimension.height);
+        this.mainWindow.getMazeModel().notifyWindowSizeChange(dimension.width, dimension.height);
     }
 
     public void notifyForUpdate() {
@@ -31,9 +33,8 @@ public class MazePanel extends JPanel {
     }
 
     @Override
-    protected void paintComponent(Graphics g)
-    {
-        super.paintComponent(g) ;
-        mainWindow.getMazeModel().paintBoxes(g) ;
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        mainWindow.getMazeModel().paintBoxes(g);
     }
 }
