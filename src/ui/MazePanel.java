@@ -29,7 +29,7 @@ public class MazePanel extends JPanel {
     }
 
     public void notifyForUpdate() {
-
+        repaint();
     }
 
     @Override
