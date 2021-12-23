@@ -3,12 +3,14 @@ package model;
 import maze.Maze;
 
 import java.awt.*;
+import javax.swing.event.* ;
 import java.util.ArrayList;
 
 public class MazeModel {
 
     private final Maze maze = new Maze();
     private final ArrayList<ArrayList<MazeBox>> boxes;
+    private final ArrayList<ChangeListener> listeners = new ArrayList<>() ;
     private MazeBox selectedBox = null;
     private boolean modified = false;
     //The number of box in a line
@@ -32,6 +34,10 @@ public class MazeModel {
         this.maze.initFromTextFile(filename);
     }
 
+    public void addObserver(ChangeListener listener) {
+        listeners.add(listener) ;
+    }
+
     public void notifyWindowSizeChange(float width, float height) {
         boxWidth = width / nb_box_x;
         boxHeight = height / nb_box_y;
@@ -48,6 +54,8 @@ public class MazeModel {
                 box.paint(g, false);
             }
         }
+        if (selectedBox != null)
+            selectedBox.paint(g,true) ;
     }
 
     public final MazeBox getSelectedBox() {
@@ -67,7 +75,6 @@ public class MazeModel {
             for (MazeBox box : col) {
                 if (box.contains(x, y)) {
                     setSelectedSBox(box);
-                    System.out.println(box);
                     return;
                 }
             }
@@ -76,9 +83,9 @@ public class MazeModel {
     }
 
     public void stateChanges() {
-        /*ChangeEvent evt = new ChangeEvent(this) ;
+        ChangeEvent evt = new ChangeEvent(this) ;
         for (ChangeListener listener : listeners) {
             listener.stateChanged(evt);
-        }*/
+        }
     }
 }

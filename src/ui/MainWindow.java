@@ -3,8 +3,9 @@ package ui;
 import model.MazeModel;
 
 import javax.swing.*;
+import javax.swing.event.*;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ChangeListener {
 
     private final MazeMenuBar mazeMenuBar;
     private final WindowPanel windowPanel;
@@ -14,6 +15,8 @@ public class MainWindow extends JFrame {
         super("Maze Application");
         setJMenuBar(mazeMenuBar = new MazeMenuBar(this));
         setContentPane(windowPanel = new WindowPanel(this));
+
+        mazeModel.addObserver(this);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -27,5 +30,10 @@ public class MainWindow extends JFrame {
 
     public void setMazeModel(MazeModel mazeModel) {
         this.mazeModel = mazeModel;
+    }
+
+    public void stateChanged(ChangeEvent evt)
+    {
+        windowPanel.notifyForUpdate() ;
     }
 }
