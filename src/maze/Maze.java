@@ -198,4 +198,38 @@ public class Maze implements GraphInterface {
     public final void printWithPath(PreviousInterface p) {
         this.printWithPath(this.getPathToGoal(p));
     }
+
+    public void initializeEmptyMaze(int width, int height) {
+        goal = null;
+        root = null;
+        this.width = width;
+        this.height = height;
+        boxGrid = new ArrayList<>();
+        for (int x = 0; x < width; x++) {
+            boxGrid.add(new ArrayList<>());
+            for (int y = 0; y < height; y++) {
+                boxGrid.get(x).add(new EBox(this, x, y));
+            }
+        }
+    }
+
+    public void setNewStart(int x, int y) {
+        if (root != null) {
+            int oldRootX = root.getX();
+            int oldRootY = root.getY();
+            this.boxGrid.get(oldRootX).set(oldRootY, new EBox(this, oldRootX, oldRootY));
+        }
+        this.boxGrid.get(x).set(y, new DBox(this, x, y));
+        this.root = (DBox) this.boxGrid.get(x).get(y);
+    }
+
+    public void setNewGoal(int x, int y) {
+        if (goal != null) {
+            int oldGoalX = goal.getX();
+            int oldGoalY = goal.getY();
+            this.boxGrid.get(oldGoalX).set(oldGoalY, new EBox(this, oldGoalX, oldGoalY));
+        }
+        this.boxGrid.get(x).set(y, new ABox(this, x, y));
+        this.goal = (ABox)this.boxGrid.get(x).get(y);
+    }
 }
