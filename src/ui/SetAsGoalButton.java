@@ -11,13 +11,14 @@ public class SetAsGoalButton extends JButton implements ActionListener {
     public SetAsGoalButton(MainWindow mainWindow) {
         super("Set as Goal");
         this.mainWindow = mainWindow;
+        this.setEnabled(false);
         addActionListener(this);
-        //this.setText();
     }
 
     public void actionPerformed(ActionEvent evt) {
     }
 
     public void notifyForUpdate() {
+        this.setEnabled(mainWindow.getMazeModel().getSelectedBox() != null);
     }
 }

@@ -11,13 +11,14 @@ public class SetAsStartButton extends JButton implements ActionListener {
     public SetAsStartButton(MainWindow mainWindow) {
         super("Set as Start");
         this.mainWindow = mainWindow;
+        this.setEnabled(false);
         addActionListener(this);
-        //this.setText();
     }
 
     public void actionPerformed(ActionEvent evt) {
     }
 
     public void notifyForUpdate() {
+        this.setEnabled(mainWindow.getMazeModel().getSelectedBox() != null);
     }
 }

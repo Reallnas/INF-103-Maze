@@ -11,13 +11,14 @@ public class ChangeBoxTypeButton extends JButton implements ActionListener {
     public ChangeBoxTypeButton(MainWindow mainWindow) {
         super("Change Box Type");
         this.mainWindow = mainWindow;
+        this.setEnabled(false);
         addActionListener(this);
-        //this.setText();
     }
 
     public void actionPerformed(ActionEvent evt) {
     }
 
     public void notifyForUpdate() {
+        this.setEnabled(mainWindow.getMazeModel().getSelectedBox() != null);
     }
 }
