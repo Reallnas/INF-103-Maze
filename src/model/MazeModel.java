@@ -23,10 +23,10 @@ public class MazeModel {
 
     public MazeModel() {
         boxes = new ArrayList<>();
-        for (int i = 0; i < nb_box_x; i++) {
+        for (int x = 0; x < nb_box_x; x++) {
             boxes.add(new ArrayList<>());
-            for (int j = 0; j < nb_box_y; j++) {
-                boxes.get(i).add(new MazeBox(i, j, boxWidth, boxHeight));
+            for (int y = 0; y < nb_box_y; y++) {
+                boxes.get(x).add(new MazeBox(x, y, boxWidth, boxHeight));
             }
         }
     }
