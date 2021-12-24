@@ -9,7 +9,7 @@ public class SetAsStartButton extends JButton implements ActionListener {
     private final MainWindow mainWindow;
 
     public SetAsStartButton(MainWindow mainWindow) {
-        super("Change Box Type");
+        super("Set as Start");
         this.mainWindow = mainWindow;
         addActionListener(this);
         //this.setText();
