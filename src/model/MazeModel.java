@@ -58,6 +58,10 @@ public class MazeModel {
             selectedBox.paint(g,true) ;
     }
 
+    public final boolean hasASelectedBox() {
+        return selectedBox != null;
+    }
+
     public final MazeBox getSelectedBox() {
         return selectedBox;
     }
