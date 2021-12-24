@@ -7,23 +7,28 @@ public class MazeBox extends Rectangle2D.Float {
 
     private final static BasicStroke usualStroke;
     private final static BasicStroke largeStroke;
+    private final int XBoxCoordinate;
+    private final int YBoxCoordinate;
 
     static {
         usualStroke = new BasicStroke();
         largeStroke = new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
     }
 
-    private Color color;
+    private Color color = Color.WHITE;
 
-    public MazeBox(float x, float y, float w, float h, Color color) {
-        super(x, y, w, h);
-
-        this.color = color;
+    public MazeBox(int x, int y, float w, float h) {
+        super(x*w, y*h, w, h);
+        XBoxCoordinate = x;
+        YBoxCoordinate = y;
     }
 
     public final void paint(Graphics g, boolean selected) {
         Graphics2D g2 = (Graphics2D) g;
+
         g2.setColor(color);
+        g2.fill(this);
+        g2.setColor(Color.BLACK);
 
         if (selected) {
             g2.setStroke(largeStroke);

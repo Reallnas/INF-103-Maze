@@ -26,7 +26,7 @@ public class MazeModel {
         for (int i = 0; i < nb_box_x; i++) {
             boxes.add(new ArrayList<>());
             for (int j = 0; j < nb_box_y; j++) {
-                boxes.get(i).add(new MazeBox(i * boxWidth, j * boxHeight, boxWidth, boxHeight, Color.BLACK));
+                boxes.get(i).add(new MazeBox(i, j, boxWidth, boxHeight));
             }
         }
     }
