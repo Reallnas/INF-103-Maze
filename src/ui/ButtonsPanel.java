@@ -24,8 +24,11 @@ public class ButtonsPanel extends JPanel {
     }
 
     public void notifyForUpdate() {
-        //colorIndicator.notifyForUpdate() ;
-        //eraseSegment.notifyForUpdate() ;
+        changeBoxTypeButton.notifyForUpdate();
+        setAsStartButton.notifyForUpdate();
+        setAsGoalButton.notifyForUpdate();
+        saveButton.notifyForUpdate();
+        findPathButton.notifyForUpdate();
     }
 }
 

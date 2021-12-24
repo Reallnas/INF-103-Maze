@@ -17,4 +17,7 @@ public class SetAsStartButton extends JButton implements ActionListener {
 
     public void actionPerformed(ActionEvent evt) {
     }
+
+    public void notifyForUpdate() {
+    }
 }
