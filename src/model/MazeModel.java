@@ -74,7 +74,10 @@ public class MazeModel {
         for (ArrayList<MazeBox> col : boxes) {
             for (MazeBox box : col) {
                 if (box.contains(x, y)) {
-                    setSelectedSBox(box);
+                    if (box == selectedBox)
+                        setSelectedSBox(null);
+                    else
+                        setSelectedSBox(box);
                     return;
                 }
             }
