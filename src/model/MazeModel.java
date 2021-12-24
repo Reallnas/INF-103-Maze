@@ -2,15 +2,16 @@ package model;
 
 import maze.Maze;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
-import javax.swing.event.* ;
 import java.util.ArrayList;
 
 public class MazeModel {
 
     private final Maze maze = new Maze();
     private final ArrayList<ArrayList<MazeBox>> boxes;
-    private final ArrayList<ChangeListener> listeners = new ArrayList<>() ;
+    private final ArrayList<ChangeListener> listeners = new ArrayList<>();
     private MazeBox selectedBox = null;
     private boolean modified = false;
     //The number of box in a line
@@ -30,12 +31,18 @@ public class MazeModel {
         }
     }
 
+    public void saveToFile() {
+        System.out.println("Save to File");
+        modified = false;
+        stateChanges();
+    }
+
     public void loadFromFile(String filename) {
         this.maze.initFromTextFile(filename);
     }
 
     public void addObserver(ChangeListener listener) {
-        listeners.add(listener) ;
+        listeners.add(listener);
     }
 
     public void notifyWindowSizeChange(float width, float height) {
@@ -48,6 +55,10 @@ public class MazeModel {
         }
     }
 
+    public boolean isModified() {
+        return modified;
+    }
+
     public final void paintBoxes(Graphics g) {
         for (ArrayList<MazeBox> column : boxes) {
             for (MazeBox box : column) {
@@ -55,7 +66,7 @@ public class MazeModel {
             }
         }
         if (selectedBox != null)
-            selectedBox.paint(g,true) ;
+            selectedBox.paint(g, true);
     }
 
     public final boolean hasASelectedBox() {
@@ -69,7 +80,6 @@ public class MazeModel {
     public final void setSelectedBox(MazeBox selectedBox) {
         if (this.selectedBox != selectedBox) {
             this.selectedBox = selectedBox;
-            modified = true;
             stateChanges();
         }
     }
@@ -90,7 +100,7 @@ public class MazeModel {
     }
 
     public void stateChanges() {
-        ChangeEvent evt = new ChangeEvent(this) ;
+        ChangeEvent evt = new ChangeEvent(this);
         for (ChangeListener listener : listeners) {
             listener.stateChanged(evt);
         }
@@ -98,13 +108,19 @@ public class MazeModel {
 
     public void setSelectedBoxAsStart() {
         System.out.println("New Start");
+        modified = true;
+        stateChanges();
     }
 
     public void setSelectedBoxAsGoal() {
         System.out.println("New Goal");
+        modified = true;
+        stateChanges();
     }
 
     public void changeSelectedBoxType() {
         System.out.println("Changed Type");
+        modified = true;
+        stateChanges();
     }
 }

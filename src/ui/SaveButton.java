@@ -11,13 +11,15 @@ public class SaveButton extends JButton implements ActionListener {
     public SaveButton(MainWindow mainWindow) {
         super("Save Maze to File");
         this.mainWindow = mainWindow;
+        this.setEnabled(false);
         addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent evt) {
-
+        mainWindow.getMazeModel().saveToFile();
     }
 
     public void notifyForUpdate() {
+        this.setEnabled(mainWindow.getMazeModel().isModified());
     }
 }
