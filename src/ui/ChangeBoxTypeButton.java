@@ -16,6 +16,7 @@ public class ChangeBoxTypeButton extends JButton implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
+        mainWindow.getMazeModel().changeSelectedBoxType();
     }
 
     public void notifyForUpdate() {

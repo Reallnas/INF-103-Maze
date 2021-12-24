@@ -16,6 +16,7 @@ public class SetAsGoalButton extends JButton implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
+        mainWindow.getMazeModel().setSelectedBoxAsGoal();
     }
 
     public void notifyForUpdate() {

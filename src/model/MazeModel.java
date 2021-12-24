@@ -95,4 +95,16 @@ public class MazeModel {
             listener.stateChanged(evt);
         }
     }
+
+    public void setSelectedBoxAsStart() {
+        System.out.println("New Start");
+    }
+
+    public void setSelectedBoxAsGoal() {
+        System.out.println("New Goal");
+    }
+
+    public void changeSelectedBoxType() {
+        System.out.println("Changed Type");
+    }
 }
