@@ -7,12 +7,12 @@ public final class DBox extends EBox {
     }
 
     @Override
-    public final String getLabel() {
+    public String getLabel() {
         return "Type:Départ, " + super.getLabel();
     }
 
     @Override
-    public final char getFileRepresentation() {
+    public char getFileRepresentation() {
         return 'D';
     }
 }

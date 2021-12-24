@@ -7,7 +7,7 @@ public class Previous implements PreviousInterface {
     private final Hashtable<VertexInterface, VertexInterface> fathers;
 
     public Previous() {
-        this.fathers = new Hashtable<VertexInterface, VertexInterface>();
+        this.fathers = new Hashtable<>();
     }
 
     @Override

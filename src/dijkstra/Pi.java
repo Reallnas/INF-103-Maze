@@ -11,13 +11,13 @@ public final class Pi implements PiInterface {
     private final GraphInterface graph;
 
     public Pi(GraphInterface g, VertexInterface pivot) {
-        this.distances = new Hashtable<VertexInterface, Integer>();
+        this.distances = new Hashtable<>();
         this.graph = g;
         this.initialize(g, pivot);
     }
 
     @Override
-    public final void initialize(GraphInterface g, VertexInterface pivot) {
+    public void initialize(GraphInterface g, VertexInterface pivot) {
         ArrayList<VertexInterface> vertices = this.graph.getAllVertices();
         for (VertexInterface v : vertices) {
             this.distances.put(v, Integer.MAX_VALUE);
@@ -26,17 +26,17 @@ public final class Pi implements PiInterface {
     }
 
     @Override
-    public final int getDistance(VertexInterface v) {
+    public int getDistance(VertexInterface v) {
         return this.distances.get(v);
     }
 
     @Override
-    public final void setDistance(VertexInterface v, int value) {
+    public void setDistance(VertexInterface v, int value) {
         this.distances.put(v, value);
     }
 
     @Override
-    public final VertexInterface getMinimallyEvaluatedVertex(ASetInterface aset) {
+    public VertexInterface getMinimallyEvaluatedVertex(ASetInterface aset) {
         Set<Map.Entry<VertexInterface, Integer>> vertices = this.distances.entrySet();
         Map.Entry<VertexInterface, Integer> min = null;
         for (Map.Entry<VertexInterface, Integer> pair : vertices) {
@@ -49,7 +49,7 @@ public final class Pi implements PiInterface {
     }
 
     @Override
-    public final void evaluateSuccessorsNotInA(ASetInterface aset, PreviousInterface p, VertexInterface pivot) {
+    public void evaluateSuccessorsNotInA(ASetInterface aset, PreviousInterface p, VertexInterface pivot) {
         ArrayList<VertexInterface> successors = this.graph.getSuccessors(pivot);
         for (VertexInterface successor : successors) {
             if (!aset.contains(successor)) {

@@ -35,7 +35,7 @@ public class Maze implements GraphInterface {
 
     @Override
     public ArrayList<VertexInterface> getAllVertices() {
-        ArrayList<VertexInterface> vertices = new ArrayList<VertexInterface>(getSize());
+        ArrayList<VertexInterface> vertices = new ArrayList<>(getSize());
         for (int i = 0; i < horizontalSize; i++) {
             vertices.addAll(verticalSize * i, boxGrid.get(i));
         }
@@ -46,7 +46,7 @@ public class Maze implements GraphInterface {
     @Override
     public ArrayList<VertexInterface> getSuccessors(VertexInterface vertex) {
         MBox vBox = (MBox) vertex;
-        ArrayList<VertexInterface> successors = new ArrayList<VertexInterface>();
+        ArrayList<VertexInterface> successors = new ArrayList<>();
 
         if (vBox.getX() > 0) {
             MBox leftNeighbor = boxGrid.get(vBox.getX() - 1).get(vBox.getY());
@@ -112,9 +112,9 @@ public class Maze implements GraphInterface {
                 int nbColumn = str.length();
                 if (horizontalSize == 0) {
                     horizontalSize = nbColumn;
-                    boxGrid = new ArrayList<ArrayList<MBox>>();
+                    boxGrid = new ArrayList<>();
                     for (int i = 0; i < nbColumn; i++) {
-                        boxGrid.add(new ArrayList<MBox>());
+                        boxGrid.add(new ArrayList<>());
                     }
                 } else if (nbColumn != horizontalSize)
                     throw new MazeReadingException("Error: Maze has varying line size", fileName, nbLine);
@@ -139,8 +139,6 @@ public class Maze implements GraphInterface {
             }
             this.verticalSize = nbLine;
 
-        } catch (MazeReadingException mre) {
-            System.out.print(mre);
         } catch (Exception e) {
             System.out.print(e);
         } finally {
