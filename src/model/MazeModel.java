@@ -62,7 +62,7 @@ public class MazeModel {
         return selectedBox;
     }
 
-    public final void setSelectedSBox(MazeBox selectedBox) {
+    public final void setSelectedBox(MazeBox selectedBox) {
         if (this.selectedBox != selectedBox) {
             this.selectedBox = selectedBox;
             modified = true;
@@ -75,14 +75,14 @@ public class MazeModel {
             for (MazeBox box : col) {
                 if (box.contains(x, y)) {
                     if (box == selectedBox)
-                        setSelectedSBox(null);
+                        setSelectedBox(null);
                     else
-                        setSelectedSBox(box);
+                        setSelectedBox(box);
                     return;
                 }
             }
         }
-        setSelectedSBox(null);
+        setSelectedBox(null);
     }
 
     public void stateChanges() {
