@@ -13,8 +13,8 @@ public class Maze implements GraphInterface {
     private ArrayList<ArrayList<MBox>> boxGrid;
     private ABox goal = null;
     private DBox root = null;
-    private int horizontalSize = 0;
-    private int verticalSize = 0;
+    private int width = 0;
+    private int height = 0;
 
     public VertexInterface getRoot() {
         return this.root;
@@ -30,14 +30,14 @@ public class Maze implements GraphInterface {
     //Return the number of boxes in the maze
     @Override
     public int getSize() {
-        return horizontalSize * verticalSize;
+        return width * height;
     }
 
     @Override
     public ArrayList<VertexInterface> getAllVertices() {
         ArrayList<VertexInterface> vertices = new ArrayList<>(getSize());
-        for (int i = 0; i < horizontalSize; i++) {
-            vertices.addAll(verticalSize * i, boxGrid.get(i));
+        for (int i = 0; i < width; i++) {
+            vertices.addAll(height * i, boxGrid.get(i));
         }
         return vertices;
     }
@@ -55,7 +55,7 @@ public class Maze implements GraphInterface {
                 successors.add(leftNeighbor);
         }
 
-        if (vBox.getX() < horizontalSize - 1) {
+        if (vBox.getX() < width - 1) {
             MBox rightNeighbor = boxGrid.get(vBox.getX() + 1).get(vBox.getY());
             //Look up if the right neighbor is an empty box
             if (isSuccessor(vBox, rightNeighbor))
@@ -69,7 +69,7 @@ public class Maze implements GraphInterface {
                 successors.add(upNeighbor);
         }
 
-        if (vBox.getY() < verticalSize - 1) {
+        if (vBox.getY() < height - 1) {
             MBox downNeighbor = boxGrid.get(vBox.getX()).get(vBox.getY() + 1);
             //Look up if the lower neighbor is an empty box
             if (isSuccessor(vBox, downNeighbor))
@@ -110,16 +110,16 @@ public class Maze implements GraphInterface {
                 //System.out.println(str);
                 nbLine += 1;
                 int nbColumn = str.length();
-                if (horizontalSize == 0) {
-                    horizontalSize = nbColumn;
+                if (width == 0) {
+                    width = nbColumn;
                     boxGrid = new ArrayList<>();
                     for (int i = 0; i < nbColumn; i++) {
                         boxGrid.add(new ArrayList<>());
                     }
-                } else if (nbColumn != horizontalSize)
+                } else if (nbColumn != width)
                     throw new MazeReadingException("Error: Maze has varying line size", fileName, nbLine);
 
-                for (int i = 0; i < horizontalSize; i++) {
+                for (int i = 0; i < width; i++) {
                     final char currentCharacter = str.charAt(i);
                     if (currentCharacter == 'E') {
                         boxGrid.get(i).add(new EBox(this, i, nbLine - 1));
@@ -137,7 +137,7 @@ public class Maze implements GraphInterface {
                 //System.out.println(boxGrid);
                 str = br.readLine();
             }
-            this.verticalSize = nbLine;
+            this.height = nbLine;
 
         } catch (Exception e) {
             System.out.print(e);
@@ -160,10 +160,8 @@ public class Maze implements GraphInterface {
             fos = new FileOutputStream(fileName);
             pw = new PrintWriter(fos);
 
-            //System.out.print(this.horizontalSize);
-            //System.out.print(this.verticalSize);
-            for (int y = 0; y < this.verticalSize; y++) {
-                for (int x = 0; x < this.horizontalSize; x++) {
+            for (int y = 0; y < this.height; y++) {
+                for (int x = 0; x < this.width; x++) {
                     //System.out.print(this.boxGrid.get(x).get(y).getFileRepresentation());
                     pw.print(this.boxGrid.get(x).get(y).getFileRepresentation());
                 }
@@ -185,8 +183,8 @@ public class Maze implements GraphInterface {
     }
 
     public final void printWithPath(ASetInterface path) {
-        for (int y = 0; y < this.verticalSize; y++) {
-            for (int x = 0; x < this.horizontalSize; x++) {
+        for (int y = 0; y < this.height; y++) {
+            for (int x = 0; x < this.width; x++) {
                 MBox current = this.boxGrid.get(x).get(y);
                 char representation = current.getFileRepresentation();
                 if (path.contains(current))
