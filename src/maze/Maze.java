@@ -116,46 +116,27 @@ public class Maze implements GraphInterface {
     public final void initFromTextFile(String fileName) {
         FileReader fr = null;
         BufferedReader br = null;
+        int newWidth = 0;
+        int newHeight = 0;
+        ArrayList<String> mazeRepresentation = new ArrayList<>();
         try {
             fr = new FileReader(fileName);
             br = new BufferedReader(fr);
             String str = br.readLine();
-            int nbLine = 0;
             while (str != null) {
                 //System.out.println(str);
-                nbLine += 1;
+                newHeight += 1;
                 int nbColumn = str.length();
-                if (width == 0) {
-                    width = nbColumn;
-                    boxGrid = new ArrayList<>();
-                    for (int i = 0; i < nbColumn; i++) {
-                        boxGrid.add(new ArrayList<>());
-                    }
-                } else if (nbColumn != width)
-                    throw new MazeReadingException("Error: Maze has varying line size", fileName, nbLine);
-
-                for (int i = 0; i < width; i++) {
-                    final char currentCharacter = str.charAt(i);
-                    if (currentCharacter == 'E') {
-                        boxGrid.get(i).add(new EBox(this, i, nbLine - 1));
-                    } else if (currentCharacter == 'W') {
-                        boxGrid.get(i).add(new WBox(this, i, nbLine - 1));
-                    } else if (currentCharacter == 'A') {
-                        this.goal = new ABox(this, i, nbLine - 1);
-                        boxGrid.get(i).add(this.goal);
-                    } else if (currentCharacter == 'D') {
-                        this.root = new DBox(this, i, nbLine - 1);
-                        boxGrid.get(i).add(this.root);
-                    } else
-                        throw new MazeReadingException("Error: Unknown box type: " + currentCharacter, fileName, nbLine);
-                }
-                //System.out.println(boxGrid);
+                if (newWidth == 0) {
+                    newWidth = nbColumn;
+                } else if (nbColumn != newWidth)
+                    throw new MazeReadingException("Error: Maze is not rectangular", fileName, newHeight);
+                mazeRepresentation.add(str);
                 str = br.readLine();
             }
-            this.height = nbLine;
-
         } catch (Exception e) {
             System.out.print(e);
+            return;
         } finally {
             try {
                 fr.close();
@@ -166,8 +147,35 @@ public class Maze implements GraphInterface {
             } catch (Exception e) {
             }
         }
-        System.out.printf("New Maze Width : %d%n",width);
-        System.out.printf("New Maze Height : %d%n",height);
+        initializeEmptyMaze(newWidth, newHeight);
+        try {
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    final char currentCharacter = mazeRepresentation.get(y).charAt(x);
+                    switch (currentCharacter) {
+                        case 'E':
+                            boxGrid.get(x).set(y, new EBox(this, x, y));
+                            break;
+                        case 'W':
+                            boxGrid.get(x).set(y, new WBox(this, x, y));
+                            break;
+                        case 'A':
+                            setNewGoal(x, y);
+                            break;
+                        case 'D':
+                            setNewStart(x, y);
+                            break;
+                        default:
+                            throw new MazeReadingException("Error: Unknown box type: " + currentCharacter, fileName, y);
+                    }
+                }
+            }
+        } catch (MazeReadingException mre) {
+            System.out.print(mre);
+        }
+
+        System.out.printf("New Maze Width : %d%n", width);
+        System.out.printf("New Maze Height : %d%n", height);
     }
 
     public final void saveToTextFile(String fileName) {
@@ -231,7 +239,7 @@ public class Maze implements GraphInterface {
     }
 
     public void setNewStart(int x, int y) {
-        System.out.printf("New Start %d %d%n",x,y);
+        System.out.printf("New Start %d %d%n", x, y);
         //If we overwrite the current goal, we need to update the reference to avoid referencing an outdated Box
         if (goal != null && goal.getX() == x && goal.getY() == y) {
             goal = null;
@@ -247,7 +255,7 @@ public class Maze implements GraphInterface {
     }
 
     public void setNewGoal(int x, int y) {
-        System.out.printf("New Goal %d %d%n",x,y);
+        System.out.printf("New Goal %d %d%n", x, y);
         //If we overwrite the current root, we need to update the reference to avoid referencing an outdated Box
         if (root != null && root.getX() == x && root.getY() == y) {
             root = null;
@@ -273,10 +281,10 @@ public class Maze implements GraphInterface {
 
         if (boxGrid.get(x).get(y).getFileRepresentation() == 'W') {
             this.boxGrid.get(x).set(y, new EBox(this, x, y));
-            System.out.printf("Changed to Empty Box %d %d%n",x,y);
+            System.out.printf("Changed to Empty Box %d %d%n", x, y);
         } else {
             this.boxGrid.get(x).set(y, new WBox(this, x, y));
-            System.out.printf("Changed to Wall Box %d %d%n",x,y);
+            System.out.printf("Changed to Wall Box %d %d%n", x, y);
         }
     }
 

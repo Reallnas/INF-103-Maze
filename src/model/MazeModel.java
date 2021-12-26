@@ -76,7 +76,6 @@ public class MazeModel {
     }
 
     public void loadFromFile(String filename) {
-        //TODO - To Fix :The view doesn't update once the maze has been loaded
         this.maze.initFromTextFile(filename);
         nb_box_x = maze.getWidth();
         nb_box_y = maze.getHeight();
