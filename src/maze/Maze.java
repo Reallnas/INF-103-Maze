@@ -101,6 +101,10 @@ public class Maze implements GraphInterface {
         return path;
     }
 
+    public ASetInterface getPathToGoal() {
+        return getPathToGoal(Dijkstra.dijkstra(this,root));
+    }
+
     public final void initFromTextFile(String fileName) {
         FileReader fr = null;
         BufferedReader br = null;
