@@ -15,7 +15,7 @@ public class MainTest {
         testMaze("data/labyrinthe.txt");
         testMaze("data/labyrinthe_pas_de_chemin.txt");
 
-        //MainWindow mw = new MainWindow();
+        MainWindow mw = new MainWindow();
     }
 
     private static void testMaze(String filename) {

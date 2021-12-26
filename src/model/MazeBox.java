@@ -23,6 +23,10 @@ public class MazeBox extends Rectangle2D.Float {
         YBoxCoordinate = y;
     }
 
+    public void setBackgroundColor(Color color) {
+        this.color = color;
+    }
+
     public final void paint(Graphics g, boolean selected) {
         Graphics2D g2 = (Graphics2D) g;
 

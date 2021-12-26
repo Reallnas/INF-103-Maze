@@ -1,6 +1,7 @@
 package model;
 
-import maze.Maze;
+import dijkstra.VertexInterface;
+import maze.*;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -29,11 +30,40 @@ public class MazeModel {
                 boxes.get(x).add(new MazeBox(x, y, boxWidth, boxHeight));
             }
         }
+        this.maze.initializeEmptyMaze(nb_box_x,nb_box_y);
     }
 
     public void saveToFile() {
         System.out.println("Save to File");
         modified = false;
+        stateChanges();
+    }
+
+    public void updateBoxesColor() {
+        for(VertexInterface vi : maze.getAllVertices()) {
+            MBox mb = (MBox) vi;
+            MazeBox box = boxes.get(mb.getX()).get(mb.getY());
+
+            //TODO: Maybe make MazeModel inherit from Maze and make several subclasses of *Box to have the
+            // color linked to the type of the box instead of this switch
+            char boxType = mb.getFileRepresentation();
+            switch (boxType) {
+                case 'E':
+                    box.setBackgroundColor(Color.WHITE);
+                    break;
+                case 'W':
+                    box.setBackgroundColor(Color.DARK_GRAY);
+                    break;
+                case  'A':
+                    box.setBackgroundColor(Color.GREEN);
+                    break;
+                case 'D':
+                    box.setBackgroundColor(Color.RED);
+                    break;
+                default:
+                    box.setBackgroundColor(Color.MAGENTA);
+            }
+        }
         stateChanges();
     }
 
@@ -109,18 +139,18 @@ public class MazeModel {
     public void setSelectedBoxAsStart() {
         System.out.println("New Start");
         modified = true;
-        stateChanges();
+        updateBoxesColor();
     }
 
     public void setSelectedBoxAsGoal() {
         System.out.println("New Goal");
         modified = true;
-        stateChanges();
+        updateBoxesColor();
     }
 
     public void changeSelectedBoxType() {
         System.out.println("Changed Type");
         modified = true;
-        stateChanges();
+        updateBoxesColor();
     }
 }
