@@ -43,6 +43,7 @@ public class MazeModel {
     }
 
     public void updateBoxesColor() {
+        System.out.println("Updating Boxes Color...");
         for (VertexInterface vi : maze.getAllVertices()) {
             MBox mb = (MBox) vi;
             MazeBox box = boxes.get(mb.getX()).get(mb.getY());
@@ -50,6 +51,7 @@ public class MazeModel {
             //TODO: Maybe make MazeModel inherit from Maze and make several subclasses of *Box to have the
             // color linked to the type of the box instead of this switch
             char boxType = mb.getFileRepresentation();
+            System.out.printf("%d %d %c%n",mb.getX(),mb.getY(),boxType);
             switch (boxType) {
                 case 'E':
                     box.setBackgroundColor(Color.WHITE);
@@ -74,7 +76,7 @@ public class MazeModel {
     }
 
     public void loadFromFile(String filename) {
-        //TODO - Fix :Can't modify the modify the maze once it has been loaded
+        //TODO - To Fix :The view doesn't update once the maze has been loaded
         this.maze.initFromTextFile(filename);
         nb_box_x = maze.getWidth();
         nb_box_y = maze.getHeight();
@@ -150,7 +152,6 @@ public class MazeModel {
 
     public void setSelectedBoxAsStart() {
         if (hasASelectedBox()) {
-            System.out.println("New Start");
             maze.setNewStart(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
             modified = true;
             updateBoxesColor();
@@ -159,7 +160,6 @@ public class MazeModel {
 
     public void setSelectedBoxAsGoal() {
         if (hasASelectedBox()) {
-            System.out.println("New Goal");
             modified = true;
             maze.setNewGoal(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
             updateBoxesColor();
@@ -168,7 +168,6 @@ public class MazeModel {
 
     public void changeSelectedBoxType() {
         if (hasASelectedBox()) {
-            System.out.println("Changed Type");
             modified = true;
             maze.changeBoxType(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
             updateBoxesColor();

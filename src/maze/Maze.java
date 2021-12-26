@@ -166,6 +166,8 @@ public class Maze implements GraphInterface {
             } catch (Exception e) {
             }
         }
+        System.out.printf("New Maze Width : %d%n",width);
+        System.out.printf("New Maze Height : %d%n",height);
     }
 
     public final void saveToTextFile(String fileName) {
@@ -229,6 +231,7 @@ public class Maze implements GraphInterface {
     }
 
     public void setNewStart(int x, int y) {
+        System.out.printf("New Start %d %d%n",x,y);
         //If we overwrite the current goal, we need to update the reference to avoid referencing an outdated Box
         if (goal != null && goal.getX() == x && goal.getY() == y) {
             goal = null;
@@ -244,6 +247,7 @@ public class Maze implements GraphInterface {
     }
 
     public void setNewGoal(int x, int y) {
+        System.out.printf("New Goal %d %d%n",x,y);
         //If we overwrite the current root, we need to update the reference to avoid referencing an outdated Box
         if (root != null && root.getX() == x && root.getY() == y) {
             root = null;
@@ -269,8 +273,10 @@ public class Maze implements GraphInterface {
 
         if (boxGrid.get(x).get(y).getFileRepresentation() == 'W') {
             this.boxGrid.get(x).set(y, new EBox(this, x, y));
+            System.out.printf("Changed to Empty Box %d %d%n",x,y);
         } else {
             this.boxGrid.get(x).set(y, new WBox(this, x, y));
+            System.out.printf("Changed to Wall Box %d %d%n",x,y);
         }
     }
 
