@@ -23,6 +23,14 @@ public class MazeBox extends Rectangle2D.Float {
         YBoxCoordinate = y;
     }
 
+    public int getXCoordinate() {
+        return XBoxCoordinate;
+    }
+
+    public int getYCoordinate() {
+        return YBoxCoordinate;
+    }
+
     public void setBackgroundColor(Color color) {
         this.color = color;
     }

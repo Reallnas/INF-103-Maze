@@ -1,7 +1,8 @@
 package model;
 
 import dijkstra.VertexInterface;
-import maze.*;
+import maze.MBox;
+import maze.Maze;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -30,7 +31,7 @@ public class MazeModel {
                 boxes.get(x).add(new MazeBox(x, y, boxWidth, boxHeight));
             }
         }
-        this.maze.initializeEmptyMaze(nb_box_x,nb_box_y);
+        this.maze.initializeEmptyMaze(nb_box_x, nb_box_y);
     }
 
     public void saveToFile() {
@@ -40,7 +41,7 @@ public class MazeModel {
     }
 
     public void updateBoxesColor() {
-        for(VertexInterface vi : maze.getAllVertices()) {
+        for (VertexInterface vi : maze.getAllVertices()) {
             MBox mb = (MBox) vi;
             MazeBox box = boxes.get(mb.getX()).get(mb.getY());
 
@@ -54,7 +55,7 @@ public class MazeModel {
                 case 'W':
                     box.setBackgroundColor(Color.DARK_GRAY);
                     break;
-                case  'A':
+                case 'A':
                     box.setBackgroundColor(Color.GREEN);
                     break;
                 case 'D':
@@ -137,15 +138,21 @@ public class MazeModel {
     }
 
     public void setSelectedBoxAsStart() {
-        System.out.println("New Start");
-        modified = true;
-        updateBoxesColor();
+        if (hasASelectedBox()) {
+            System.out.println("New Start");
+            maze.setNewStart(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
+            modified = true;
+            updateBoxesColor();
+        }
     }
 
     public void setSelectedBoxAsGoal() {
-        System.out.println("New Goal");
-        modified = true;
-        updateBoxesColor();
+        if (hasASelectedBox()) {
+            System.out.println("New Goal");
+            modified = true;
+            maze.setNewGoal(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
+            updateBoxesColor();
+        }
     }
 
     public void changeSelectedBoxType() {
