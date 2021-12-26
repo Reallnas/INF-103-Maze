@@ -1,5 +1,6 @@
 package model;
 
+import dijkstra.ASetInterface;
 import dijkstra.VertexInterface;
 import maze.MBox;
 import maze.Maze;
@@ -16,6 +17,7 @@ public class MazeModel {
     private final ArrayList<ChangeListener> listeners = new ArrayList<>();
     private MazeBox selectedBox = null;
     private boolean modified = false;
+    private ASetInterface path;
     //The number of box in a line
     private int nb_box_x = 10;
     //The number of box in a column
@@ -63,6 +65,9 @@ public class MazeModel {
                     break;
                 default:
                     box.setBackgroundColor(Color.MAGENTA);
+            }
+            if (path != null && path.contains(mb) && boxType != 'A' && boxType != 'D') {
+                box.setBackgroundColor(Color.YELLOW);
             }
         }
         stateChanges();
@@ -169,6 +174,10 @@ public class MazeModel {
     }
 
     public void FindAPath() {
-        System.out.println("Finding a Path...");
+        if (maze.canFindAPath()) {
+            System.out.println("Finding a Path...");
+            path = maze.getPathToGoal();
+            updateBoxesColor();
+        }
     }
 }
