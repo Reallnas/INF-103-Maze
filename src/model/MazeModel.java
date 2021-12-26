@@ -156,9 +156,12 @@ public class MazeModel {
     }
 
     public void changeSelectedBoxType() {
-        System.out.println("Changed Type");
-        modified = true;
-        updateBoxesColor();
+        if (hasASelectedBox()) {
+            System.out.println("Changed Type");
+            modified = true;
+            maze.changeBoxType(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
+            updateBoxesColor();
+        }
     }
 
     public boolean canFindAPath() {

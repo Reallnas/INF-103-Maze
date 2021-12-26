@@ -248,6 +248,21 @@ public class Maze implements GraphInterface {
 
     }
 
+    public void changeBoxType(int x, int y) {
+        //If we overwrite the current root or goal, we need to update the reference to avoid referencing an outdated Box
+        if (goal != null && goal.getX() == x && goal.getY() == y) {
+            goal = null;
+        } else if (root != null && root.getX() == x && root.getY() == y) {
+            root = null;
+        }
+
+        if (boxGrid.get(x).get(y).getFileRepresentation() == 'W') {
+            this.boxGrid.get(x).set(y, new EBox(this, x, y));
+        } else {
+            this.boxGrid.get(x).set(y, new WBox(this, x, y));
+        }
+    }
+
     public boolean canFindAPath() {
         return root != null && goal != null;
     }
