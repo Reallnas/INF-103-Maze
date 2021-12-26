@@ -15,8 +15,10 @@ public class FindPathButton extends JButton implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
+        mainWindow.getMazeModel().FindAPath();
     }
 
     public void notifyForUpdate() {
+        setEnabled(mainWindow.getMazeModel().canFindAPath());
     }
 }

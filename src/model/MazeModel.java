@@ -160,4 +160,12 @@ public class MazeModel {
         modified = true;
         updateBoxesColor();
     }
+
+    public boolean canFindAPath() {
+        return maze.canFindAPath();
+    }
+
+    public void FindAPath() {
+        System.out.println("Finding a Path...");
+    }
 }
