@@ -16,6 +16,14 @@ public class Maze implements GraphInterface {
     private int width = 0;
     private int height = 0;
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public VertexInterface getRoot() {
         return this.root;
     }
@@ -102,13 +110,12 @@ public class Maze implements GraphInterface {
     }
 
     public ASetInterface getPathToGoal() {
-        return getPathToGoal(Dijkstra.dijkstra(this,root));
+        return getPathToGoal(Dijkstra.dijkstra(this, root));
     }
 
     public final void initFromTextFile(String fileName) {
         FileReader fr = null;
         BufferedReader br = null;
-
         try {
             fr = new FileReader(fileName);
             br = new BufferedReader(fr);

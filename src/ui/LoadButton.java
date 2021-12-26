@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class LoadButton extends JButton implements ActionListener {
 
@@ -15,5 +16,11 @@ public class LoadButton extends JButton implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
+        JFileChooser fileChooser = new JFileChooser(".");
+        int option = fileChooser.showOpenDialog(mainWindow);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            mainWindow.getMazeModel().loadFromFile(file.getAbsolutePath());
+        }
     }
 }

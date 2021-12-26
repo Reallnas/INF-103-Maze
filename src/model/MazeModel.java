@@ -74,7 +74,13 @@ public class MazeModel {
     }
 
     public void loadFromFile(String filename) {
+        //TODO - Fix :Can't modify the modify the maze once it has been loaded
         this.maze.initFromTextFile(filename);
+        nb_box_x = maze.getWidth();
+        nb_box_y = maze.getHeight();
+        modified = false;
+        path = null;
+        updateBoxesColor();
     }
 
     public void addObserver(ChangeListener listener) {
