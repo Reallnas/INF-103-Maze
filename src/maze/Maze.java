@@ -218,6 +218,11 @@ public class Maze implements GraphInterface {
     }
 
     public void setNewStart(int x, int y) {
+        //If we overwrite the current goal, we need to update the reference to avoid referencing an outdated Box
+        if(goal != null && goal.getX()==x && goal.getY() == y) {
+            goal = null;
+        }
+
         if (root != null) {
             int oldRootX = root.getX();
             int oldRootY = root.getY();
@@ -228,6 +233,10 @@ public class Maze implements GraphInterface {
     }
 
     public void setNewGoal(int x, int y) {
+        if(root != null && root.getX()==x && root.getY() == y) {
+            root = null;
+        }
+
         if (goal != null) {
             int oldGoalX = goal.getX();
             int oldGoalY = goal.getY();
@@ -235,5 +244,6 @@ public class Maze implements GraphInterface {
         }
         this.boxGrid.get(x).set(y, new ABox(this, x, y));
         this.goal = (ABox)this.boxGrid.get(x).get(y);
+
     }
 }
