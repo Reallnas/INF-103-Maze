@@ -5,9 +5,11 @@ import dijkstra.VertexInterface;
 import maze.MBox;
 import maze.Maze;
 
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 public class MazeModel {
@@ -24,6 +26,7 @@ public class MazeModel {
     private int nb_box_y = 10;
     private float boxWidth = 80;
     private float boxHeight = 80;
+    private String currentFile = null;
 
     public MazeModel() {
         boxes = new ArrayList<>();
@@ -36,8 +39,24 @@ public class MazeModel {
         this.maze.initializeEmptyMaze(nb_box_x, nb_box_y);
     }
 
+    public void setCurrentFile(String filename) {
+        currentFile = filename;
+    }
+
+    public boolean hasACurrentFile() {
+        return currentFile != null;
+    }
+
     public void saveToFile() {
-        System.out.println("Save to File");
+        if(!modified)
+            return;
+
+        if(currentFile == null) {
+            return;
+        }
+
+        System.out.printf("Saving to file: %s\n",currentFile);
+        maze.saveToTextFile(currentFile);
         modified = false;
         stateChanges();
     }
@@ -77,6 +96,7 @@ public class MazeModel {
 
     public void loadFromFile(String filename) {
         this.maze.initFromTextFile(filename);
+        currentFile = filename;
         nb_box_x = maze.getWidth();
         nb_box_y = maze.getHeight();
         modified = false;
