@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class FileMenu extends JMenu {
 
+    private final NewMazeMenuItem newMazeMenuItem;
     private final OpenMenuItem openMenuItem;
     private final SaveMenuItem saveMenuItem;
     private final SaveAsMenuItem saveAsMenuItem;
@@ -12,6 +13,7 @@ public class FileMenu extends JMenu {
     public FileMenu(MainWindow mainWindow) {
         super("File");
 
+        add(newMazeMenuItem = new NewMazeMenuItem(mainWindow));
         add(openMenuItem = new OpenMenuItem(mainWindow));
         add(saveMenuItem = new SaveMenuItem(mainWindow));
         add(saveAsMenuItem = new SaveAsMenuItem(mainWindow));

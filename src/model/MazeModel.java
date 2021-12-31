@@ -204,4 +204,15 @@ public class MazeModel {
             updateBoxesColor();
         }
     }
+
+    public void reset() {
+        selectedBox = null;
+        modified = true;
+        path = null;
+        nb_box_x = 10;
+        nb_box_y = 10;
+        currentFile = null;
+        this.maze.initializeEmptyMaze(nb_box_x, nb_box_y);
+        updateBoxesColor();
+    }
 }
