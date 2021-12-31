@@ -1,8 +1,11 @@
 package ui;
 
+import model.MazeModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 //import model.* ;
 
@@ -17,25 +20,38 @@ public class QuitMenuItem extends JMenuItem implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
-        /*DrawingAppModel drawingAppModel = mainWindow.getDrawingAppModel() ;
-
-        if (drawingAppModel.isModified()) {
+        if (mainWindow.getMazeModel().isModified()) {
             int response = JOptionPane.showInternalOptionDialog(this,
-                    "Drawing not saved. Save it ?",
+                    "Maze not saved. Save it ?",
                     "Quit application",
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.WARNING_MESSAGE,
-                    null,null,null) ;
+                    null, null, null);
             switch (response) {
                 case JOptionPane.CANCEL_OPTION:
-                    return ;
+                    return;
                 case JOptionPane.OK_OPTION:
-                    //drawingAppModel.saveToFile() ;
-                    break ;
+                    save();
+                    break;
                 case JOptionPane.NO_OPTION:
-                    break ;
+                    break;
             }
-        }*/
+        }
         System.exit(0);
+    }
+
+    private void save() {
+        if (!mainWindow.getMazeModel().hasACurrentFile()) {
+            JFileChooser fileChooser = new JFileChooser(".");
+            int option = fileChooser.showOpenDialog(mainWindow);
+            if (option == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                String filepath = file.getAbsolutePath();
+                if (!filepath.endsWith(".txt"))
+                    filepath += ".txt";
+                mainWindow.getMazeModel().setCurrentFile(filepath);
+                mainWindow.getMazeModel().saveToFile();
+            }
+        }
     }
 }
