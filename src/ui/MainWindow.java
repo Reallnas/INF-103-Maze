@@ -34,6 +34,7 @@ public class MainWindow extends JFrame implements ChangeListener {
 
     public void stateChanged(ChangeEvent evt)
     {
+        mazeMenuBar.notifyForUpdates();
         windowPanel.notifyForUpdate() ;
     }
 }

@@ -12,4 +12,7 @@ public class MazeMenuBar extends JMenuBar {
         add(fileMenu = new FileMenu(mainWindow));
     }
 
+    public void notifyForUpdates() {
+        fileMenu.notifyForUpdates();
+    }
 }
