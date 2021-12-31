@@ -26,9 +26,9 @@ public class SaveMenuItem extends JMenuItem implements ActionListener {
                 if(!filepath.endsWith(".txt"))
                     filepath += ".txt";
                 mainWindow.getMazeModel().setCurrentFile(filepath);
+                mainWindow.getMazeModel().saveToFile();
             }
         }
-        mainWindow.getMazeModel().saveToFile();
     }
 
     public void notifyForUpdate() {
