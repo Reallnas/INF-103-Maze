@@ -20,10 +20,7 @@ public class SaveAsMenuItem extends JMenuItem implements ActionListener {
         int option = fileChooser.showOpenDialog(mainWindow);
         if (option == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            String filepath = file.getAbsolutePath();
-            if (!filepath.endsWith(".txt"))
-                filepath += ".txt";
-            mainWindow.getMazeModel().setCurrentFile(filepath);
+            mainWindow.getMazeModel().setCurrentFile(file.getAbsolutePath());
             mainWindow.getMazeModel().saveToFile();
         }
     }

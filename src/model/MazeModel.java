@@ -40,6 +40,8 @@ public class MazeModel {
     }
 
     public void setCurrentFile(String filename) {
+        if (!filename.endsWith(".txt"))
+            filename += ".txt";
         currentFile = filename;
     }
 
