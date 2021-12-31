@@ -9,13 +9,12 @@ public class MazeBox extends Rectangle2D.Float {
     private final static BasicStroke largeStroke;
     private final int XBoxCoordinate;
     private final int YBoxCoordinate;
+    private Color color = Color.WHITE;
 
     static {
         usualStroke = new BasicStroke();
         largeStroke = new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
     }
-
-    private Color color = Color.WHITE;
 
     public MazeBox(int x, int y, float w, float h) {
         super(x*w, y*h, w, h);
