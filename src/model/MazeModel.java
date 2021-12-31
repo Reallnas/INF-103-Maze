@@ -4,6 +4,7 @@ import dijkstra.ASetInterface;
 import dijkstra.VertexInterface;
 import maze.MBox;
 import maze.Maze;
+import ui.MainWindow;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -49,18 +50,15 @@ public class MazeModel {
         return currentFile != null;
     }
 
-    public void saveToFile() {
-        if(!modified)
-            return;
-
-        if(currentFile == null) {
-            return;
-        }
+    public boolean saveToFile() {
+        if(!modified || currentFile == null)
+            return false;
 
         System.out.printf("Saving to file: %s\n",currentFile);
         maze.saveToTextFile(currentFile);
         modified = false;
         stateChanges();
+        return true;
     }
 
     public void updateBoxesColor() {
@@ -216,5 +214,14 @@ public class MazeModel {
         currentFile = null;
         this.maze.initializeEmptyMaze(nb_box_x, nb_box_y);
         updateBoxesColor();
+    }
+
+    public void chooseFileToSave(MainWindow mainWindow) {
+        JFileChooser fileChooser = new JFileChooser(".");
+        int option = fileChooser.showOpenDialog(mainWindow);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            mainWindow.getMazeModel().setCurrentFile(file.getAbsolutePath());
+        }
     }
 }

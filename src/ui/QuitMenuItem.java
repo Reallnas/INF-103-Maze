@@ -31,8 +31,10 @@ public class QuitMenuItem extends JMenuItem implements ActionListener {
                 case JOptionPane.CANCEL_OPTION:
                     return;
                 case JOptionPane.OK_OPTION:
-                    save();
-                    break;
+                    //If the user changed his mind and didn't want to quit, we return early to prevent exiting.
+                    if(!save()) {
+                        return;
+                    }
                 case JOptionPane.NO_OPTION:
                     break;
             }
@@ -40,15 +42,11 @@ public class QuitMenuItem extends JMenuItem implements ActionListener {
         System.exit(0);
     }
 
-    private void save() {
-        if (!mainWindow.getMazeModel().hasACurrentFile()) {
-            JFileChooser fileChooser = new JFileChooser(".");
-            int option = fileChooser.showOpenDialog(mainWindow);
-            if (option == JFileChooser.APPROVE_OPTION) {
-                File file = fileChooser.getSelectedFile();
-                mainWindow.getMazeModel().setCurrentFile(file.getAbsolutePath());
-                mainWindow.getMazeModel().saveToFile();
-            }
+    private boolean save() {
+        MazeModel mazeModel = mainWindow.getMazeModel();
+        if (!mazeModel.hasACurrentFile()) {
+            mazeModel.chooseFileToSave(mainWindow);
         }
+        return mazeModel.saveToFile();
     }
 }

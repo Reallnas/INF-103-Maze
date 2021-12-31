@@ -1,5 +1,7 @@
 package ui;
 
+import model.MazeModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,13 +18,9 @@ public class SaveAsMenuItem extends JMenuItem implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
-        JFileChooser fileChooser = new JFileChooser(".");
-        int option = fileChooser.showOpenDialog(mainWindow);
-        if (option == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            mainWindow.getMazeModel().setCurrentFile(file.getAbsolutePath());
-            mainWindow.getMazeModel().saveToFile();
-        }
+        MazeModel mazeModel = mainWindow.getMazeModel();
+        mazeModel.chooseFileToSave(mainWindow);
+        mazeModel.saveToFile();
     }
 
     public void notifyForUpdate() {
