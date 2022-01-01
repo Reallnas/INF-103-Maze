@@ -19,7 +19,7 @@ public class MazeModel {
     private final ArrayList<ArrayList<MazeBox>> boxes;
     private final ArrayList<ChangeListener> listeners = new ArrayList<>();
     private MazeBox selectedBox = null;
-    private boolean modified = false;
+    private boolean modified = true;
     private ASetInterface path;
     //The number of box in a line
     private int nb_box_x = 10;
