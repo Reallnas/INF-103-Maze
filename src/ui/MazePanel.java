@@ -26,6 +26,7 @@ public class MazePanel extends JPanel {
     public void notifyWindowSizeChange() {
         Dimension dimension = getSize();
         this.mainWindow.getMazeModel().notifyWindowSizeChange(dimension.width, dimension.height);
+        repaint();
     }
 
     public void notifyForUpdate() {
