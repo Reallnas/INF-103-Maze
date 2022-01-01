@@ -70,7 +70,7 @@ public class MazeModel {
             //TODO: Maybe make MazeModel inherit from Maze and make several subclasses of *Box to have the
             // color linked to the type of the box instead of this switch
             char boxType = mb.getFileRepresentation();
-            System.out.printf("%d %d %c%n",mb.getX(),mb.getY(),boxType);
+            //System.out.printf("%d %d %c%n",mb.getX(),mb.getY(),boxType);
             switch (boxType) {
                 case 'E':
                     box.setBackgroundColor(Color.WHITE);
