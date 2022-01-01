@@ -11,6 +11,7 @@ public class FindPathButton extends JButton implements ActionListener {
     public FindPathButton(MainWindow mainWindow) {
         super("Find a Path");
         this.mainWindow = mainWindow;
+        setEnabled(false);
         addActionListener(this);
     }
 
