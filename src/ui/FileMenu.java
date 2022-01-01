@@ -22,6 +22,5 @@ public class FileMenu extends JMenu {
 
     public void notifyForUpdates() {
         saveMenuItem.notifyForUpdate();
-        saveAsMenuItem.notifyForUpdate();
     }
 }

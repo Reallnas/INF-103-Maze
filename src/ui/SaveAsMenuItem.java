@@ -5,7 +5,6 @@ import model.MazeModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 public class SaveAsMenuItem extends JMenuItem implements ActionListener {
 
@@ -21,8 +20,5 @@ public class SaveAsMenuItem extends JMenuItem implements ActionListener {
         MazeModel mazeModel = mainWindow.getMazeModel();
         mazeModel.chooseFileToSave(mainWindow);
         mazeModel.saveToFile();
-    }
-
-    public void notifyForUpdate() {
     }
 }
