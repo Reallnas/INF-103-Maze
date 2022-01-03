@@ -291,4 +291,8 @@ public class Maze implements GraphInterface {
     public boolean canFindAPath() {
         return root != null && goal != null;
     }
+
+    public char getVertexTypeByCoords(int x, int y) {
+        return boxGrid.get(x).get(y).getFileRepresentation();
+    }
 }

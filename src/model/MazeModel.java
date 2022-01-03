@@ -164,6 +164,15 @@ public class MazeModel {
         }
     }
 
+    public final boolean isSelectedBoxAWall() {
+        return maze.getVertexTypeByCoords(selectedBox.getXCoordinate(),selectedBox.getYCoordinate()) == 'W';
+    }
+
+    public final boolean isSelectedBoxEmpty() {
+        char type = maze.getVertexTypeByCoords(selectedBox.getXCoordinate(),selectedBox.getYCoordinate());
+        return type == 'E' || type == 'A' || type == 'D';
+    }
+
     public final void setSelection(int x, int y) {
         for (ArrayList<MazeBox> col : boxes) {
             for (MazeBox box : col) {
