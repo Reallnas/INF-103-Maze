@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class MazeModel {
 
     private final Maze maze = new Maze();
-    private ArrayList<ArrayList<MazeBox>> boxes;
     private final ArrayList<ChangeListener> listeners = new ArrayList<>();
+    private ArrayList<ArrayList<MazeBox>> boxes;
     private MazeBox selectedBox = null;
     private boolean modified = true;
     private ASetInterface path;
@@ -27,18 +27,12 @@ public class MazeModel {
     private int nb_box_y = 10;
     private float boxWidth = 80;
     private float boxHeight = 80;
-    private float windowsWidth = boxWidth*nb_box_x;
-    private float windowsHeight = boxHeight*nb_box_y;
+    private float windowsWidth = boxWidth * nb_box_x;
+    private float windowsHeight = boxHeight * nb_box_y;
     private String currentFile = null;
 
     public MazeModel() {
-        boxes = new ArrayList<>();
-        for (int x = 0; x < nb_box_x; x++) {
-            boxes.add(new ArrayList<>());
-            for (int y = 0; y < nb_box_y; y++) {
-                boxes.get(x).add(new MazeBox(x, y, boxWidth, boxHeight));
-            }
-        }
+        initializeEmptyMaze(nb_box_x, nb_box_y);
         this.maze.initializeEmptyMaze(nb_box_x, nb_box_y);
     }
 
@@ -53,10 +47,10 @@ public class MazeModel {
     }
 
     public boolean saveToFile() {
-        if(!modified || currentFile == null)
+        if (!modified || currentFile == null)
             return false;
 
-        System.out.printf("Saving to file: %s\n",currentFile);
+        System.out.printf("Saving to file: %s\n", currentFile);
         maze.saveToTextFile(currentFile);
         modified = false;
         stateChanges();
@@ -112,7 +106,7 @@ public class MazeModel {
     public void loadFromFile(String filename) {
         this.maze.initFromTextFile(filename);
         currentFile = filename;
-        if(nb_box_x != maze.getWidth() || nb_box_y != maze.getHeight()) {
+        if (nb_box_x != maze.getWidth() || nb_box_y != maze.getHeight()) {
             this.boxes = new ArrayList<>();
             for (int x = 0; x < maze.getWidth(); x++) {
                 boxes.add(new ArrayList<>());
@@ -165,11 +159,11 @@ public class MazeModel {
     }
 
     public final boolean isSelectedBoxAWall() {
-        return maze.getVertexTypeByCoords(selectedBox.getXCoordinate(),selectedBox.getYCoordinate()) == 'W';
+        return maze.getVertexTypeByCoords(selectedBox.getXCoordinate(), selectedBox.getYCoordinate()) == 'W';
     }
 
     public final boolean isSelectedBoxEmpty() {
-        char type = maze.getVertexTypeByCoords(selectedBox.getXCoordinate(),selectedBox.getYCoordinate());
+        char type = maze.getVertexTypeByCoords(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
         return type == 'E' || type == 'A' || type == 'D';
     }
 
@@ -235,11 +229,23 @@ public class MazeModel {
         selectedBox = null;
         modified = true;
         path = null;
-        nb_box_x = 10;
-        nb_box_y = 10;
         currentFile = null;
+        initializeEmptyMaze(10, 10);
         this.maze.initializeEmptyMaze(nb_box_x, nb_box_y);
         updateBoxesColor();
+        updateBoxesSize();
+    }
+
+    public void initializeEmptyMaze(int nb_box_x, int nb_box_y) {
+        this.nb_box_x = nb_box_x;
+        this.nb_box_y = nb_box_y;
+        boxes = new ArrayList<>();
+        for (int x = 0; x < nb_box_x; x++) {
+            boxes.add(new ArrayList<>());
+            for (int y = 0; y < nb_box_y; y++) {
+                boxes.get(x).add(new MazeBox(x, y, boxWidth, boxHeight));
+            }
+        }
     }
 
     public void chooseFileToSave(MainWindow mainWindow) {
