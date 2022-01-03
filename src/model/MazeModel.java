@@ -22,18 +22,18 @@ public class MazeModel {
     private boolean modified = true;
     private ASetInterface path;
     //The number of box in a line
-    private int nb_box_x = 10;
+    private int nbBoxX = 10;
     //The number of box in a column
-    private int nb_box_y = 10;
+    private int nbBoxY = 10;
     private float boxWidth = 80;
     private float boxHeight = 80;
-    private float windowsWidth = boxWidth * nb_box_x;
-    private float windowsHeight = boxHeight * nb_box_y;
+    private float windowsWidth = boxWidth * nbBoxX;
+    private float windowsHeight = boxHeight * nbBoxY;
     private String currentFile = null;
 
     public MazeModel() {
-        initializeEmptyMaze(nb_box_x, nb_box_y);
-        this.maze.initializeEmptyMaze(nb_box_x, nb_box_y);
+        initializeEmptyMaze(nbBoxX, nbBoxY);
+        this.maze.initializeEmptyMaze(nbBoxX, nbBoxY);
     }
 
     public void setCurrentFile(String filename) {
@@ -94,10 +94,10 @@ public class MazeModel {
 
     private void updateBoxesSize() {
         System.out.println("Updating Boxes Size...");
-        boxWidth = windowsWidth / nb_box_x;
-        boxHeight = windowsHeight / nb_box_y;
-        for (int x = 0; x < nb_box_x; x++) {
-            for (int y = 0; y < nb_box_y; y++) {
+        boxWidth = windowsWidth / nbBoxX;
+        boxHeight = windowsHeight / nbBoxY;
+        for (int x = 0; x < nbBoxX; x++) {
+            for (int y = 0; y < nbBoxY; y++) {
                 boxes.get(x).get(y).setRect(x * boxWidth, y * boxHeight, boxWidth, boxHeight);
             }
         }
@@ -106,7 +106,7 @@ public class MazeModel {
     public void loadFromFile(String filename) {
         this.maze.initFromTextFile(filename);
         currentFile = filename;
-        if (nb_box_x != maze.getWidth() || nb_box_y != maze.getHeight()) {
+        if (nbBoxX != maze.getWidth() || nbBoxY != maze.getHeight()) {
             this.boxes = new ArrayList<>();
             for (int x = 0; x < maze.getWidth(); x++) {
                 boxes.add(new ArrayList<>());
@@ -115,8 +115,8 @@ public class MazeModel {
                 }
             }
         }
-        nb_box_x = maze.getWidth();
-        nb_box_y = maze.getHeight();
+        nbBoxX = maze.getWidth();
+        nbBoxY = maze.getHeight();
         modified = false;
         path = null;
         updateBoxesColor();
@@ -231,18 +231,18 @@ public class MazeModel {
         path = null;
         currentFile = null;
         initializeEmptyMaze(10, 10);
-        this.maze.initializeEmptyMaze(nb_box_x, nb_box_y);
+        this.maze.initializeEmptyMaze(nbBoxX, nbBoxY);
         updateBoxesColor();
         updateBoxesSize();
     }
 
-    public void initializeEmptyMaze(int nb_box_x, int nb_box_y) {
-        this.nb_box_x = nb_box_x;
-        this.nb_box_y = nb_box_y;
+    public void initializeEmptyMaze(int nbBoxX, int nbBoxY) {
+        this.nbBoxX = nbBoxX;
+        this.nbBoxY = nbBoxY;
         boxes = new ArrayList<>();
-        for (int x = 0; x < nb_box_x; x++) {
+        for (int x = 0; x < nbBoxX; x++) {
             boxes.add(new ArrayList<>());
-            for (int y = 0; y < nb_box_y; y++) {
+            for (int y = 0; y < nbBoxY; y++) {
                 boxes.get(x).add(new MazeBox(x, y, boxWidth, boxHeight));
             }
         }
