@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FindPathMenuItem extends JMenuItem implements ActionListener {
+public class FindPathMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
@@ -15,11 +15,13 @@ public class FindPathMenuItem extends JMenuItem implements ActionListener {
         addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
         mainWindow.getMazeModel().FindAPath();
     }
 
-    public void notifyForUpdate() {
+    @Override
+    public void notifyForUpdates() {
         setEnabled(mainWindow.getMazeModel().canFindAPath());
     }
 }

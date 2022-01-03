@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-public class MazePanel extends JPanel {
+public class MazePanel extends JPanel implements NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
@@ -29,7 +29,8 @@ public class MazePanel extends JPanel {
         repaint();
     }
 
-    public void notifyForUpdate() {
+    @Override
+    public void notifyForUpdates() {
         repaint();
     }
 

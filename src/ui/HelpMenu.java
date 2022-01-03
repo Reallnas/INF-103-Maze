@@ -2,7 +2,7 @@ package ui;
 
 import javax.swing.*;
 
-public class HelpMenu extends JMenu {
+public class HelpMenu extends JMenu implements NotifiableUIElement {
 
     private final CreditsMenuItem creditsMenuItem;
     public HelpMenu(MainWindow mainWindow) {
@@ -11,7 +11,8 @@ public class HelpMenu extends JMenu {
         add(creditsMenuItem = new CreditsMenuItem(mainWindow));
     }
 
+    @Override
     public void notifyForUpdates() {
-
+        creditsMenuItem.notifyForUpdates();
     }
 }

@@ -33,7 +33,6 @@ public class MazeModel {
 
     public MazeModel() {
         initializeEmptyMaze(nbBoxX, nbBoxY);
-        this.maze.initializeEmptyMaze(nbBoxX, nbBoxY);
     }
 
     public void setCurrentFile(String filename) {
@@ -119,6 +118,15 @@ public class MazeModel {
         nbBoxY = maze.getHeight();
         modified = false;
         path = null;
+        if(hasASelectedBox()) {
+            int oldSelectedBoxX = selectedBox.getXCoordinate();
+            int oldSelectedBoxY = selectedBox.getYCoordinate();
+            if(oldSelectedBoxX < nbBoxX && oldSelectedBoxY < nbBoxY) {
+                selectedBox = boxes.get(oldSelectedBoxX).get(oldSelectedBoxY);
+            } else {
+                selectedBox = null;
+            }
+        }
         updateBoxesColor();
         updateBoxesSize();
     }
@@ -230,13 +238,13 @@ public class MazeModel {
         modified = true;
         path = null;
         currentFile = null;
-        initializeEmptyMaze(10, 10);
-        this.maze.initializeEmptyMaze(nbBoxX, nbBoxY);
+        initializeEmptyMaze(10,10);
         updateBoxesColor();
         updateBoxesSize();
     }
 
     public void initializeEmptyMaze(int nbBoxX, int nbBoxY) {
+        this.maze.initializeEmptyMaze(nbBoxX, nbBoxY);
         this.nbBoxX = nbBoxX;
         this.nbBoxY = nbBoxY;
         boxes = new ArrayList<>();

@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ChangeBoxTypeButton extends JButton implements ActionListener {
+public class ChangeBoxTypeButton extends JButton implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
@@ -17,11 +17,13 @@ public class ChangeBoxTypeButton extends JButton implements ActionListener {
         addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
         mainWindow.getMazeModel().changeSelectedBoxType();
     }
 
-    public void notifyForUpdate() {
+    @Override
+    public void notifyForUpdates() {
         MazeModel mazeModel = mainWindow.getMazeModel();
         boolean hasASelectedBox = mazeModel.hasASelectedBox();
         this.setEnabled(hasASelectedBox);

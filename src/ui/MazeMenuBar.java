@@ -2,7 +2,7 @@ package ui;
 
 import javax.swing.*;
 
-public class MazeMenuBar extends JMenuBar {
+public class MazeMenuBar extends JMenuBar implements NotifiableUIElement {
 
     private final FileMenu fileMenu;
     private final MazeActionsMenu mazeActionsMenu;
@@ -16,8 +16,10 @@ public class MazeMenuBar extends JMenuBar {
         add(helpMenu = new HelpMenu(mainWindow));
     }
 
+    @Override
     public void notifyForUpdates() {
         fileMenu.notifyForUpdates();
         mazeActionsMenu.notifyForUpdates();
+        helpMenu.notifyForUpdates();
     }
 }

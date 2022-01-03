@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SaveAsMenuItem extends JMenuItem implements ActionListener {
+public class SaveAsMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
@@ -16,9 +16,14 @@ public class SaveAsMenuItem extends JMenuItem implements ActionListener {
         addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
         MazeModel mazeModel = mainWindow.getMazeModel();
         mazeModel.chooseFileToSave(mainWindow);
         mazeModel.saveToFile();
+    }
+
+    @Override
+    public void notifyForUpdates() {
     }
 }

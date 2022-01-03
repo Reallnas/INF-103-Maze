@@ -2,7 +2,7 @@ package ui;
 
 import javax.swing.*;
 
-public class MazeActionsMenu extends JMenu {
+public class MazeActionsMenu extends JMenu implements NotifiableUIElement {
 
     private final NewMazeMenuItem newMazeMenuItem;
     private final ChangeBoxTypeMenuItem changeBoxTypeMenuItem;
@@ -20,10 +20,12 @@ public class MazeActionsMenu extends JMenu {
         add(findPathMenuItem = new FindPathMenuItem(mainWindow));
     }
 
+    @Override
     public void notifyForUpdates() {
-        changeBoxTypeMenuItem.notifyForUpdate();
-        setAsStartMenuItem.notifyForUpdate();
-        setAsGoalMenuItem.notifyForUpdate();
-        findPathMenuItem.notifyForUpdate();
+        newMazeMenuItem.notifyForUpdates();
+        changeBoxTypeMenuItem.notifyForUpdates();
+        setAsStartMenuItem.notifyForUpdates();
+        setAsGoalMenuItem.notifyForUpdates();
+        findPathMenuItem.notifyForUpdates();
     }
 }

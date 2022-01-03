@@ -2,7 +2,7 @@ package ui;
 
 import javax.swing.*;
 
-public class FileMenu extends JMenu {
+public class FileMenu extends JMenu implements NotifiableUIElement {
 
     private final NewMazeMenuItem newMazeMenuItem;
     private final OpenMenuItem openMenuItem;
@@ -20,7 +20,12 @@ public class FileMenu extends JMenu {
         add(quitMenuItem = new QuitMenuItem(mainWindow));
     }
 
+    @Override
     public void notifyForUpdates() {
-        saveMenuItem.notifyForUpdate();
+        newMazeMenuItem.notifyForUpdates();
+        openMenuItem.notifyForUpdates();
+        saveMenuItem.notifyForUpdates();
+        saveAsMenuItem.notifyForUpdates();
+        quitMenuItem.notifyForUpdates();
     }
 }

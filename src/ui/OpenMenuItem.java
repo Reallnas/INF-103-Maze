@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class OpenMenuItem extends JMenuItem implements ActionListener {
+public class OpenMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
@@ -15,6 +15,7 @@ public class OpenMenuItem extends JMenuItem implements ActionListener {
         addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser(".");
         int option = fileChooser.showOpenDialog(mainWindow);
@@ -22,5 +23,9 @@ public class OpenMenuItem extends JMenuItem implements ActionListener {
             File file = fileChooser.getSelectedFile();
             mainWindow.getMazeModel().loadFromFile(file.getAbsolutePath());
         }
+    }
+
+    @Override
+    public void notifyForUpdates() {
     }
 }

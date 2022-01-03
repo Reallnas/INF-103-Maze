@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 //import model.* ;
 
-public class QuitMenuItem extends JMenuItem implements ActionListener {
+public class QuitMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
@@ -18,6 +18,7 @@ public class QuitMenuItem extends JMenuItem implements ActionListener {
         addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
         if (mainWindow.getMazeModel().isModified()) {
             int response = JOptionPane.showInternalOptionDialog(this,
@@ -47,5 +48,9 @@ public class QuitMenuItem extends JMenuItem implements ActionListener {
             mazeModel.chooseFileToSave(mainWindow);
         }
         return mazeModel.saveToFile();
+    }
+
+    @Override
+    public void notifyForUpdates() {
     }
 }

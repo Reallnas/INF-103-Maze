@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NewMazeMenuItem extends JMenuItem implements ActionListener {
+public class NewMazeMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
@@ -14,7 +14,12 @@ public class NewMazeMenuItem extends JMenuItem implements ActionListener {
         addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
         mainWindow.getMazeModel().reset();
+    }
+
+    @Override
+    public void notifyForUpdates() {
     }
 }

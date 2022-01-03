@@ -3,7 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-public class ButtonsPanel extends JPanel {
+public class ButtonsPanel extends JPanel implements NotifiableUIElement {
 
     private final ChangeBoxTypeButton changeBoxTypeButton;
     private final SetAsStartButton setAsStartButton;
@@ -19,11 +19,12 @@ public class ButtonsPanel extends JPanel {
         add(findPathButton = new FindPathButton(mainWindow));
     }
 
-    public void notifyForUpdate() {
-        changeBoxTypeButton.notifyForUpdate();
-        setAsStartButton.notifyForUpdate();
-        setAsGoalButton.notifyForUpdate();
-        findPathButton.notifyForUpdate();
+    @Override
+    public void notifyForUpdates() {
+        changeBoxTypeButton.notifyForUpdates();
+        setAsStartButton.notifyForUpdates();
+        setAsGoalButton.notifyForUpdates();
+        findPathButton.notifyForUpdates();
     }
 }
 
