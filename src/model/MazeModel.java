@@ -63,7 +63,7 @@ public class MazeModel {
         return true;
     }
 
-    public void updateBoxesColor() {
+    private void updateBoxesColor() {
         System.out.println("Updating Boxes Color...");
         for (VertexInterface vi : maze.getAllVertices()) {
             MBox mb = (MBox) vi;
@@ -157,10 +157,6 @@ public class MazeModel {
         return selectedBox != null;
     }
 
-    public final MazeBox getSelectedBox() {
-        return selectedBox;
-    }
-
     public final void setSelectedBox(MazeBox selectedBox) {
         if (this.selectedBox != selectedBox) {
             this.selectedBox = selectedBox;
@@ -183,7 +179,7 @@ public class MazeModel {
         setSelectedBox(null);
     }
 
-    public void stateChanges() {
+    private void stateChanges() {
         ChangeEvent evt = new ChangeEvent(this);
         for (ChangeListener listener : listeners) {
             listener.stateChanged(evt);
