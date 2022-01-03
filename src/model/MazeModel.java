@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MazeModel {
 
     private final Maze maze = new Maze();
-    private final ArrayList<ArrayList<MazeBox>> boxes;
+    private ArrayList<ArrayList<MazeBox>> boxes;
     private final ArrayList<ChangeListener> listeners = new ArrayList<>();
     private MazeBox selectedBox = null;
     private boolean modified = true;
@@ -27,6 +27,8 @@ public class MazeModel {
     private int nb_box_y = 10;
     private float boxWidth = 80;
     private float boxHeight = 80;
+    private float windowsWidth = boxWidth*nb_box_x;
+    private float windowsHeight = boxHeight*nb_box_y;
     private String currentFile = null;
 
     public MazeModel() {
@@ -65,7 +67,9 @@ public class MazeModel {
         System.out.println("Updating Boxes Color...");
         for (VertexInterface vi : maze.getAllVertices()) {
             MBox mb = (MBox) vi;
-            MazeBox box = boxes.get(mb.getX()).get(mb.getY());
+            int boxX = mb.getX();
+            int boxY = mb.getY();
+            MazeBox box = boxes.get(boxX).get(boxY);
 
             //TODO: Maybe make MazeModel inherit from Maze and make several subclasses of *Box to have the
             // color linked to the type of the box instead of this switch
@@ -94,14 +98,35 @@ public class MazeModel {
         stateChanges();
     }
 
+    private void updateBoxesSize() {
+        System.out.println("Updating Boxes Size...");
+        boxWidth = windowsWidth / nb_box_x;
+        boxHeight = windowsHeight / nb_box_y;
+        for (int x = 0; x < nb_box_x; x++) {
+            for (int y = 0; y < nb_box_y; y++) {
+                boxes.get(x).get(y).setRect(x * boxWidth, y * boxHeight, boxWidth, boxHeight);
+            }
+        }
+    }
+
     public void loadFromFile(String filename) {
         this.maze.initFromTextFile(filename);
         currentFile = filename;
+        if(nb_box_x != maze.getWidth() || nb_box_y != maze.getHeight()) {
+            this.boxes = new ArrayList<>();
+            for (int x = 0; x < maze.getWidth(); x++) {
+                boxes.add(new ArrayList<>());
+                for (int y = 0; y < maze.getHeight(); y++) {
+                    boxes.get(x).add(new MazeBox(x, y, boxWidth, boxHeight));
+                }
+            }
+        }
         nb_box_x = maze.getWidth();
         nb_box_y = maze.getHeight();
         modified = false;
         path = null;
         updateBoxesColor();
+        updateBoxesSize();
     }
 
     public void addObserver(ChangeListener listener) {
@@ -109,13 +134,9 @@ public class MazeModel {
     }
 
     public void notifyWindowSizeChange(float width, float height) {
-        boxWidth = width / nb_box_x;
-        boxHeight = height / nb_box_y;
-        for (int x = 0; x < nb_box_x; x++) {
-            for (int y = 0; y < nb_box_y; y++) {
-                boxes.get(x).get(y).setRect(x * boxWidth, y * boxHeight, boxWidth, boxHeight);
-            }
-        }
+        windowsWidth = width;
+        windowsHeight = height;
+        updateBoxesSize();
     }
 
     public boolean isModified() {
