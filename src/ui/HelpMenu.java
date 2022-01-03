@@ -5,6 +5,7 @@ import javax.swing.*;
 public class HelpMenu extends JMenu implements NotifiableUIElement {
 
     private final CreditsMenuItem creditsMenuItem;
+
     public HelpMenu(MainWindow mainWindow) {
         super("Help");
 

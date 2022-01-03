@@ -14,6 +14,7 @@ public class ChangeBoxTypeMenuItem extends JMenuItem implements ActionListener, 
         this.setEnabled(false);
         addActionListener(this);
     }
+
     @Override
     public void actionPerformed(ActionEvent evt) {
         mainWindow.getMazeModel().changeSelectedBoxType();

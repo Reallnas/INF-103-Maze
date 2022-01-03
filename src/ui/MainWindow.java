@@ -3,7 +3,8 @@ package ui;
 import model.MazeModel;
 
 import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame implements ChangeListener {
 
@@ -32,9 +33,8 @@ public class MainWindow extends JFrame implements ChangeListener {
         this.mazeModel = mazeModel;
     }
 
-    public void stateChanged(ChangeEvent evt)
-    {
+    public void stateChanged(ChangeEvent evt) {
         mazeMenuBar.notifyForUpdates();
-        windowPanel.notifyForUpdates() ;
+        windowPanel.notifyForUpdates();
     }
 }

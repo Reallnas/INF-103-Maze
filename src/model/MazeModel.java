@@ -118,10 +118,10 @@ public class MazeModel {
         nbBoxY = maze.getHeight();
         modified = false;
         path = null;
-        if(hasASelectedBox()) {
+        if (hasASelectedBox()) {
             int oldSelectedBoxX = selectedBox.getXCoordinate();
             int oldSelectedBoxY = selectedBox.getYCoordinate();
-            if(oldSelectedBoxX < nbBoxX && oldSelectedBoxY < nbBoxY) {
+            if (oldSelectedBoxX < nbBoxX && oldSelectedBoxY < nbBoxY) {
                 selectedBox = boxes.get(oldSelectedBoxX).get(oldSelectedBoxY);
             } else {
                 selectedBox = null;
@@ -238,7 +238,7 @@ public class MazeModel {
         modified = true;
         path = null;
         currentFile = null;
-        initializeEmptyMaze(10,10);
+        initializeEmptyMaze(10, 10);
         updateBoxesColor();
         updateBoxesSize();
     }

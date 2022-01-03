@@ -32,7 +32,7 @@ public class QuitMenuItem extends JMenuItem implements ActionListener, Notifiabl
                     return;
                 case JOptionPane.OK_OPTION:
                     //If the user changed his mind and didn't want to quit, we return early to prevent exiting.
-                    if(!save()) {
+                    if (!save()) {
                         return;
                     }
                 case JOptionPane.NO_OPTION:
