@@ -3,7 +3,7 @@ package ui;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MazePanelMouseListener extends MouseAdapter {
+public final class MazePanelMouseListener extends MouseAdapter {
 
     private final MainWindow mainWindow;
 

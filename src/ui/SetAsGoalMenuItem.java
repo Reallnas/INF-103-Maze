@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SetAsGoalMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
+public final class SetAsGoalMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 

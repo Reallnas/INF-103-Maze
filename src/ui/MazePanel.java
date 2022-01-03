@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-public class MazePanel extends JPanel implements NotifiableUIElement {
+public final class MazePanel extends JPanel implements NotifiableUIElement {
 
     private final MainWindow mainWindow;
 

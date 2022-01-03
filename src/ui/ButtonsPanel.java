@@ -3,7 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-public class ButtonsPanel extends JPanel implements NotifiableUIElement {
+public final class ButtonsPanel extends JPanel implements NotifiableUIElement {
 
     private final ChangeBoxTypeButton changeBoxTypeButton;
     private final SetAsStartButton setAsStartButton;

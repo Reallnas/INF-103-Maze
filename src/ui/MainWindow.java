@@ -6,7 +6,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class MainWindow extends JFrame implements ChangeListener {
+public final class MainWindow extends JFrame implements ChangeListener {
 
     private final MazeMenuBar mazeMenuBar;
     private final WindowPanel windowPanel;

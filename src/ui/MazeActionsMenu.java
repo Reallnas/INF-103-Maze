@@ -2,7 +2,7 @@ package ui;
 
 import javax.swing.*;
 
-public class MazeActionsMenu extends JMenu implements NotifiableUIElement {
+public final class MazeActionsMenu extends JMenu implements NotifiableUIElement {
 
     private final NewMazeMenuItem newMazeMenuItem;
     private final ChangeBoxTypeMenuItem changeBoxTypeMenuItem;

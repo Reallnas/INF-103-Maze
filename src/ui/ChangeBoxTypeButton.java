@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ChangeBoxTypeButton extends JButton implements ActionListener, NotifiableUIElement {
+public final class ChangeBoxTypeButton extends JButton implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 

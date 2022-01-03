@@ -2,7 +2,7 @@ package ui;
 
 import javax.swing.*;
 
-public class HelpMenu extends JMenu implements NotifiableUIElement {
+public final class HelpMenu extends JMenu implements NotifiableUIElement {
 
     private final CreditsMenuItem creditsMenuItem;
 

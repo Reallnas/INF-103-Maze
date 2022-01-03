@@ -6,9 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//import model.* ;
-
-public class QuitMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
+public final class QuitMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 

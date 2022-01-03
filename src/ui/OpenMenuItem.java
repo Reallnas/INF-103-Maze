@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class OpenMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
+public final class OpenMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
