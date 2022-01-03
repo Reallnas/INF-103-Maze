@@ -13,7 +13,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MazeModel {
+public final class MazeModel {
 
     private final Maze maze = new Maze();
     private final ArrayList<ChangeListener> listeners = new ArrayList<>();
@@ -137,7 +137,7 @@ public class MazeModel {
         return modified;
     }
 
-    public final void paintBoxes(Graphics g) {
+    public void paintBoxes(Graphics g) {
         for (ArrayList<MazeBox> column : boxes) {
             for (MazeBox box : column) {
                 box.paint(g, false);
@@ -147,11 +147,11 @@ public class MazeModel {
             selectedBox.paint(g, true);
     }
 
-    public final boolean hasASelectedBox() {
+    public boolean hasASelectedBox() {
         return selectedBox != null;
     }
 
-    public final void setSelectedBox(MazeBox selectedBox) {
+    public void setSelectedBox(MazeBox selectedBox) {
         if (this.selectedBox != selectedBox) {
             this.selectedBox = selectedBox;
             stateChanges();
@@ -170,16 +170,16 @@ public class MazeModel {
         }
     }
 
-    public final boolean isSelectedBoxAWall() {
+    public boolean isSelectedBoxAWall() {
         return maze.getVertexTypeByCoords(selectedBox.getXCoordinate(), selectedBox.getYCoordinate()) == 'W';
     }
 
-    public final boolean isSelectedBoxEmpty() {
+    public boolean isSelectedBoxEmpty() {
         char type = maze.getVertexTypeByCoords(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
         return type == 'E' || type == 'A' || type == 'D';
     }
 
-    public final void setSelection(int x, int y) {
+    public void setSelection(int x, int y) {
         for (ArrayList<MazeBox> col : boxes) {
             for (MazeBox box : col) {
                 if (box.contains(x, y)) {

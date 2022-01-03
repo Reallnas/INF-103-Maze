@@ -3,7 +3,7 @@ package model;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-public class MazeBox extends Rectangle2D.Float {
+public final class MazeBox extends Rectangle2D.Float {
 
     private final static BasicStroke usualStroke;
     private final static BasicStroke largeStroke;
@@ -35,7 +35,7 @@ public class MazeBox extends Rectangle2D.Float {
         this.color = color;
     }
 
-    public final void paint(Graphics g, boolean selected) {
+    public void paint(Graphics g, boolean selected) {
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(color);
