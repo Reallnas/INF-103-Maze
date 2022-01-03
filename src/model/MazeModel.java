@@ -118,15 +118,7 @@ public class MazeModel {
         nbBoxY = maze.getHeight();
         modified = false;
         path = null;
-        if (hasASelectedBox()) {
-            int oldSelectedBoxX = selectedBox.getXCoordinate();
-            int oldSelectedBoxY = selectedBox.getYCoordinate();
-            if (oldSelectedBoxX < nbBoxX && oldSelectedBoxY < nbBoxY) {
-                selectedBox = boxes.get(oldSelectedBoxX).get(oldSelectedBoxY);
-            } else {
-                selectedBox = null;
-            }
-        }
+        updateSelectedBox();
         updateBoxesColor();
         updateBoxesSize();
     }
@@ -163,6 +155,18 @@ public class MazeModel {
         if (this.selectedBox != selectedBox) {
             this.selectedBox = selectedBox;
             stateChanges();
+        }
+    }
+
+    private void updateSelectedBox() {
+        if (hasASelectedBox()) {
+            int oldSelectedBoxX = selectedBox.getXCoordinate();
+            int oldSelectedBoxY = selectedBox.getYCoordinate();
+            if (oldSelectedBoxX < nbBoxX && oldSelectedBoxY < nbBoxY) {
+                selectedBox = boxes.get(oldSelectedBoxX).get(oldSelectedBoxY);
+            } else {
+                selectedBox = null;
+            }
         }
     }
 
@@ -234,11 +238,11 @@ public class MazeModel {
     }
 
     public void reset() {
-        selectedBox = null;
         modified = true;
         path = null;
         currentFile = null;
         initializeEmptyMaze(10, 10);
+        updateSelectedBox();
         updateBoxesColor();
         updateBoxesSize();
     }
