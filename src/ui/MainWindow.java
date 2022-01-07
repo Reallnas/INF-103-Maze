@@ -43,6 +43,10 @@ public final class MainWindow extends JFrame implements ChangeListener {
         windowPanel.noPathFoundPopup();
     }
 
+    public void showCredits() {
+        windowPanel.showCredits();
+    }
+
     public void chooseFileToSave() {
         JFileChooser fileChooser = new JFileChooser(".");
         int option = fileChooser.showOpenDialog(this);

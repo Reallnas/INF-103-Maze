@@ -29,5 +29,12 @@ public final class WindowPanel extends JPanel implements NotifiableUIElement {
                 JOptionPane.WARNING_MESSAGE,
                 null, null, null);
     }
+
+    public void showCredits() {
+        JOptionPane.showMessageDialog(this,
+                "Application created by MINIER Arnaud for the INF103 course.\n2021-2022",
+                "Credits",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
 }
 
