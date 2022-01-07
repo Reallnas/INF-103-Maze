@@ -55,4 +55,8 @@ public final class MainWindow extends JFrame implements ChangeListener {
             mazeModel.setCurrentFile(file.getAbsolutePath());
         }
     }
+
+    public void showNewMazeDialog() {
+        ChooseSizeDialog s = new ChooseSizeDialog(this);
+    }
 }

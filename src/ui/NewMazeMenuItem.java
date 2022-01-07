@@ -17,7 +17,7 @@ public final class NewMazeMenuItem extends JMenuItem implements ActionListener, 
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        mainWindow.getMazeModel().reset();
+        mainWindow.showNewMazeDialog();
     }
 
     @Override
