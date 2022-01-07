@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public final class MazeActionsMenu extends JMenu implements NotifiableUIElement {
 
-    private final NewMazeMenuItem newMazeMenuItem;
+    private final ResetMazeMenuItem resetMazeMenuItem;
     private final ChangeBoxTypeMenuItem changeBoxTypeMenuItem;
     private final SetAsStartMenuItem setAsStartMenuItem;
     private final SetAsGoalMenuItem setAsGoalMenuItem;
@@ -13,7 +13,7 @@ public final class MazeActionsMenu extends JMenu implements NotifiableUIElement 
     public MazeActionsMenu(MainWindow mainWindow) {
         super("Maze Actions");
 
-        add(newMazeMenuItem = new NewMazeMenuItem(mainWindow));
+        add(resetMazeMenuItem = new ResetMazeMenuItem(mainWindow));
         add(changeBoxTypeMenuItem = new ChangeBoxTypeMenuItem(mainWindow));
         add(setAsStartMenuItem = new SetAsStartMenuItem(mainWindow));
         add(setAsGoalMenuItem = new SetAsGoalMenuItem(mainWindow));
@@ -22,7 +22,7 @@ public final class MazeActionsMenu extends JMenu implements NotifiableUIElement 
 
     @Override
     public void notifyForUpdates() {
-        newMazeMenuItem.notifyForUpdates();
+        resetMazeMenuItem.notifyForUpdates();
         changeBoxTypeMenuItem.notifyForUpdates();
         setAsStartMenuItem.notifyForUpdates();
         setAsGoalMenuItem.notifyForUpdates();

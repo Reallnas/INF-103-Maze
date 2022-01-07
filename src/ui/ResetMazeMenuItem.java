@@ -4,13 +4,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//TODO: This class should show a Popup that allow to choose the size of the new maze
-public final class NewMazeMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
+public final class ResetMazeMenuItem extends JMenuItem implements ActionListener, NotifiableUIElement {
 
     private final MainWindow mainWindow;
 
-    public NewMazeMenuItem(MainWindow mainWindow) {
-        super("New Maze");
+    public ResetMazeMenuItem(MainWindow mainWindow) {
+        super("Reset");
         this.mainWindow = mainWindow;
         addActionListener(this);
     }

@@ -242,7 +242,7 @@ public final class MazeModel {
         modified = true;
         path = null;
         currentFile = null;
-        initializeEmptyMaze(10, 10);
+        initializeEmptyMaze(nbBoxX, nbBoxY);
         updateSelectedBox();
         updateBoxesColor();
         updateBoxesSize();
