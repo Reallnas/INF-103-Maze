@@ -22,12 +22,10 @@ public final class WindowPanel extends JPanel implements NotifiableUIElement {
     }
 
     public void noPathFoundPopup() {
-        JOptionPane.showInternalOptionDialog(this,
+        JOptionPane.showMessageDialog(this,
                 "No path has been found !",
                 "No path found",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.WARNING_MESSAGE,
-                null, null, null);
+                JOptionPane.WARNING_MESSAGE);
     }
 
     public void showCredits() {
