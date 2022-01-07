@@ -233,7 +233,8 @@ public final class MazeModel {
         if (maze.canFindAPath()) {
             System.out.println("Finding a Path...");
             path = maze.getPathToGoal();
-            updateBoxesColor();
+            if(hasFoundAPath())
+                updateBoxesColor();
         }
     }
 
@@ -260,12 +261,7 @@ public final class MazeModel {
         }
     }
 
-    public void chooseFileToSave(MainWindow mainWindow) {
-        JFileChooser fileChooser = new JFileChooser(".");
-        int option = fileChooser.showOpenDialog(mainWindow);
-        if (option == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            mainWindow.getMazeModel().setCurrentFile(file.getAbsolutePath());
-        }
+    public boolean hasFoundAPath() {
+        return path != null && path.contains(maze.getRoot());
     }
 }

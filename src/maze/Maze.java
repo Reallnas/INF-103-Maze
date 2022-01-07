@@ -98,8 +98,7 @@ public class Maze implements GraphInterface {
     public ASetInterface getPathToGoal(PreviousInterface p) {
         ASet path = new ASet();
         VertexInterface current = this.goal;
-        //Workaround to prevent crashes when there is no path between the root and the goal
-        //TODO: remove workaround and fix Dijkstra Algorithm (goal shouldn't have a father if there is no path)
+        //To prevent crashes when there is no path between the root and the goal
         VertexInterface future = p.getFather(current);
         while (!path.contains(this.root) && future != null) {
             path.add(current);

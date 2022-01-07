@@ -20,5 +20,14 @@ public final class WindowPanel extends JPanel implements NotifiableUIElement {
         mazePanel.notifyForUpdates();
         buttonsPanel.notifyForUpdates();
     }
+
+    public void noPathFoundPopup() {
+        JOptionPane.showInternalOptionDialog(this,
+                "No path has been found !",
+                "No path found",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null, null, null);
+    }
 }
 

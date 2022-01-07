@@ -18,6 +18,9 @@ public final class FindPathButton extends JButton implements ActionListener, Not
     @Override
     public void actionPerformed(ActionEvent evt) {
         mainWindow.getMazeModel().FindAPath();
+        if (!mainWindow.getMazeModel().hasFoundAPath()) {
+            mainWindow.noPathFoundPopup();
+        }
     }
 
     @Override
