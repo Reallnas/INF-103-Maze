@@ -12,6 +12,13 @@ public final class Dijkstra {
             pi.evaluateSuccessorsNotInA(a, previous, pivot);
             pivot = pi.getMinimallyEvaluatedVertex(a);
             a.add(pivot);
+            //If the pivot has a distance of Integer.MAX_VALUE, it means that we evaluated every vertex in the same
+            //connected components as the start without evaluating the goal.
+            //Therefore, it is impossible to find a path between the root and the goal.
+            //We then skip the rest of the graph.
+            //If we could set this distance as infinity there would be no problem, but we can only use finite values.
+            if(pi.getDistance(pivot)== Integer.MAX_VALUE)
+                break;
         }
         return previous;
     }
