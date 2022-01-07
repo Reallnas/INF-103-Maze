@@ -43,7 +43,7 @@ public final class QuitMenuItem extends JMenuItem implements ActionListener, Not
     private boolean save() {
         MazeModel mazeModel = mainWindow.getMazeModel();
         if (!mazeModel.hasACurrentFile()) {
-            mazeModel.chooseFileToSave(mainWindow);
+            mainWindow.chooseFileToSave();
         }
         return mazeModel.saveToFile();
     }

@@ -21,7 +21,7 @@ public final class SaveMenuItem extends JMenuItem implements ActionListener, Not
     public void actionPerformed(ActionEvent evt) {
         MazeModel mazeModel = mainWindow.getMazeModel();
         if (!mazeModel.hasACurrentFile()) {
-            mazeModel.chooseFileToSave(mainWindow);
+            mainWindow.chooseFileToSave();
         }
         mazeModel.saveToFile();
     }

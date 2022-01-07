@@ -5,6 +5,7 @@ import model.MazeModel;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.io.File;
 
 public final class MainWindow extends JFrame implements ChangeListener {
 
@@ -36,5 +37,18 @@ public final class MainWindow extends JFrame implements ChangeListener {
     public void stateChanged(ChangeEvent evt) {
         mazeMenuBar.notifyForUpdates();
         windowPanel.notifyForUpdates();
+    }
+
+    public void noPathFoundPopup() {
+        windowPanel.noPathFoundPopup();
+    }
+
+    public void chooseFileToSave() {
+        JFileChooser fileChooser = new JFileChooser(".");
+        int option = fileChooser.showOpenDialog(this);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            mazeModel.setCurrentFile(file.getAbsolutePath());
+        }
     }
 }

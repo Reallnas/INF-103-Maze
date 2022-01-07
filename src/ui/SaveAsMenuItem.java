@@ -18,9 +18,8 @@ public final class SaveAsMenuItem extends JMenuItem implements ActionListener, N
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        MazeModel mazeModel = mainWindow.getMazeModel();
-        mazeModel.chooseFileToSave(mainWindow);
-        mazeModel.saveToFile();
+        mainWindow.chooseFileToSave();
+        mainWindow.getMazeModel().saveToFile();
     }
 
     @Override
