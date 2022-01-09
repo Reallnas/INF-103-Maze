@@ -4,13 +4,10 @@ import dijkstra.ASetInterface;
 import dijkstra.VertexInterface;
 import maze.MBox;
 import maze.Maze;
-import ui.MainWindow;
 
-import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
 
 public final class MazeModel {
