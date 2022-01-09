@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CancelButton extends JButton implements ActionListener {
+public final class CancelButton extends JButton implements ActionListener {
 
     private final NewMazeDialog newMazeDialog;
 

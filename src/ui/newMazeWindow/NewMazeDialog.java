@@ -5,7 +5,7 @@ import ui.MainWindow;
 import javax.swing.*;
 import java.awt.*;
 
-public class NewMazeDialog extends JDialog {
+public final class NewMazeDialog extends JDialog {
 
     private final MainWindow mainWindow;
     private final IntegerField widthField;
@@ -25,33 +25,33 @@ public class NewMazeDialog extends JDialog {
         this.mainWindow = mainWindow;
         Insets commonInset = new Insets(10, 10, 10, 10);
 
-        GridBagConstraints constraints1 = new GridBagConstraints(0, 0, 1, 1, 0,
+        GridBagConstraints widthLabelConstraints = new GridBagConstraints(0, 0, 1, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(new JLabel("Width: "), constraints1);
+        contentPane.add(new JLabel("Width: "), widthLabelConstraints);
 
-        GridBagConstraints constraints2 = new GridBagConstraints(1, 0, GridBagConstraints.REMAINDER, 1, 0,
+        GridBagConstraints widthFieldConstraints = new GridBagConstraints(1, 0, GridBagConstraints.REMAINDER, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(widthField = new IntegerField(10), constraints2);
+        contentPane.add(widthField = new IntegerField(10), widthFieldConstraints);
 
-        GridBagConstraints constraints3 = new GridBagConstraints(0, 1, 1, 1, 0,
+        GridBagConstraints heightLabelConstraints = new GridBagConstraints(0, 1, 1, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(new JLabel("Height: "), constraints3);
+        contentPane.add(new JLabel("Height: "), heightLabelConstraints);
 
-        GridBagConstraints constraints4 = new GridBagConstraints(1, 1, GridBagConstraints.REMAINDER, 1, 0,
+        GridBagConstraints heightFieldConstraints = new GridBagConstraints(1, 1, GridBagConstraints.REMAINDER, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(heightField = new IntegerField(10), constraints4);
+        contentPane.add(heightField = new IntegerField(10), heightFieldConstraints);
 
-        GridBagConstraints constraints5 = new GridBagConstraints(0, 2, 1, 1, 0,
+        GridBagConstraints paddingConstraints = new GridBagConstraints(0, 2, 1, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(new JLabel(), constraints5);
+        contentPane.add(new JLabel(), paddingConstraints);
 
-        GridBagConstraints constraints6 = new GridBagConstraints(1, 2, 1, 1, 0,
+        GridBagConstraints cancelButtonConstraints = new GridBagConstraints(1, 2, 1, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(new CancelButton(this), constraints6);
+        contentPane.add(new CancelButton(this), cancelButtonConstraints);
 
-        GridBagConstraints constraints7 = new GridBagConstraints(2, 2, 1, 1, 0,
+        GridBagConstraints OKButtonConstraints = new GridBagConstraints(2, 2, 1, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(new OKButton(this), constraints7);
+        contentPane.add(new OKButton(this), OKButtonConstraints);
 
         pack();
     }
