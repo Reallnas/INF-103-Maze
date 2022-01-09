@@ -1,4 +1,4 @@
-package ui.NewMazeWindow;
+package ui.newMazeWindow;
 
 import ui.MainWindow;
 

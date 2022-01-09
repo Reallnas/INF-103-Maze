@@ -1,4 +1,4 @@
-package ui.NewMazeWindow;
+package ui.newMazeWindow;
 
 import javax.swing.*;
 import javax.swing.text.*;

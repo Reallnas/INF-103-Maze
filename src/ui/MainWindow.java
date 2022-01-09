@@ -1,7 +1,7 @@
 package ui;
 
 import model.MazeModel;
-import ui.NewMazeWindow.NewMazeDialog;
+import ui.newMazeWindow.NewMazeDialog;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
