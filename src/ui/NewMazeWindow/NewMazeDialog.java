@@ -8,8 +8,8 @@ import java.awt.*;
 public class NewMazeDialog extends JDialog {
 
     private final MainWindow mainWindow;
-    private final JTextField widthField;
-    private final JTextField heightField;
+    private final IntegerField widthField;
+    private final IntegerField heightField;
     private Option chosenOption;
     private int chosenWidth = 1;
     private int chosenHeight = 1;
@@ -31,7 +31,7 @@ public class NewMazeDialog extends JDialog {
 
         GridBagConstraints constraints2 = new GridBagConstraints(1, 0, GridBagConstraints.REMAINDER, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(widthField = new JTextField("10"), constraints2);
+        contentPane.add(widthField = new IntegerField(10), constraints2);
 
         GridBagConstraints constraints3 = new GridBagConstraints(0, 1, 1, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
@@ -39,7 +39,7 @@ public class NewMazeDialog extends JDialog {
 
         GridBagConstraints constraints4 = new GridBagConstraints(1, 1, GridBagConstraints.REMAINDER, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
-        contentPane.add(heightField = new JTextField("10"), constraints4);
+        contentPane.add(heightField = new IntegerField(10), constraints4);
 
         GridBagConstraints constraints5 = new GridBagConstraints(0, 2, 1, 1, 0,
                 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, commonInset, 0, 0);
@@ -69,28 +69,8 @@ public class NewMazeDialog extends JDialog {
 
     public void OKClicked() {
         chosenOption = Option.APPROVE;
-        try {
-            String width = widthField.getText();
-            int convertedWidth = Integer.decode(width);
-            if (convertedWidth > 0)
-                chosenWidth = convertedWidth;
-            else
-                chosenWidth = 1;
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String height = heightField.getText();
-            int convertedHeight = Integer.decode(height);
-            if (convertedHeight > 0)
-                chosenHeight = convertedHeight;
-            else
-                chosenHeight = 1;
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-
+        chosenWidth = widthField.getValue();
+        chosenHeight = heightField.getValue();
         dispose();
     }
 
