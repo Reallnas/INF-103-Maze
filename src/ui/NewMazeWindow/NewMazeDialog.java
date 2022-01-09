@@ -94,5 +94,13 @@ public class NewMazeDialog extends JDialog {
         dispose();
     }
 
+    public int getChosenWidth() {
+        return chosenWidth;
+    }
+
+    public int getChosenHeight() {
+        return chosenHeight;
+    }
+
     public enum Option {CANCEL, APPROVE}
 }

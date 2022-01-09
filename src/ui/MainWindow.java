@@ -58,8 +58,10 @@ public final class MainWindow extends JFrame implements ChangeListener {
     }
 
     public void showNewMazeDialog() {
-        NewMazeDialog s = new NewMazeDialog(this);
-        NewMazeDialog.Option option = s.showDialog();
-        System.out.println(option);
+        NewMazeDialog newMazeDialog = new NewMazeDialog(this);
+        NewMazeDialog.Option option = newMazeDialog.showDialog();
+        if(option == NewMazeDialog.Option.APPROVE) {
+            mazeModel.initializeEmptyMaze(newMazeDialog.getChosenWidth(),newMazeDialog.getChosenHeight());
+        }
     }
 }
