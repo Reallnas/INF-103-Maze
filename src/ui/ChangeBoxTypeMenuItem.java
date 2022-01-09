@@ -1,5 +1,7 @@
 package ui;
 
+import model.MazeModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +24,16 @@ public final class ChangeBoxTypeMenuItem extends JMenuItem implements ActionList
 
     @Override
     public void notifyForUpdates() {
-        this.setEnabled(mainWindow.getMazeModel().hasASelectedBox());
+        MazeModel mazeModel = mainWindow.getMazeModel();
+        boolean hasASelectedBox = mazeModel.hasASelectedBox();
+        this.setEnabled(hasASelectedBox);
+        if (hasASelectedBox) {
+            if (mazeModel.isSelectedBoxAWall())
+                setText("Change To Empty Box");
+            else if (mazeModel.isSelectedBoxEmpty())
+                setText("Change To Wall Box");
+        } else {
+            setText("Change Box Type");
+        }
     }
 }

@@ -64,4 +64,11 @@ public final class MainWindow extends JFrame implements ChangeListener {
             mazeModel.initializeEmptyMaze(newMazeDialog.getChosenWidth(),newMazeDialog.getChosenHeight());
         }
     }
+
+    public void findAPath() {
+        mazeModel.FindAPath();
+        if (!mazeModel.hasFoundAPath()) {
+            noPathFoundPopup();
+        }
+    }
 }

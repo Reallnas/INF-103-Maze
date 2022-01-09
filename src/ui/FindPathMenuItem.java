@@ -17,7 +17,7 @@ public final class FindPathMenuItem extends JMenuItem implements ActionListener,
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        mainWindow.getMazeModel().FindAPath();
+        mainWindow.findAPath();
     }
 
     @Override
