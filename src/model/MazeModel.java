@@ -243,9 +243,6 @@ public final class MazeModel {
         path = null;
         currentFile = null;
         initializeEmptyMaze(nbBoxX, nbBoxY);
-        updateSelectedBox();
-        updateBoxesColor();
-        updateBoxesSize();
     }
 
     public void initializeEmptyMaze(int nbBoxX, int nbBoxY) {
@@ -259,6 +256,9 @@ public final class MazeModel {
                 boxes.get(x).add(new MazeBox(x, y, boxWidth, boxHeight));
             }
         }
+        updateSelectedBox();
+        updateBoxesColor();
+        updateBoxesSize();
     }
 
     public boolean hasFoundAPath() {
