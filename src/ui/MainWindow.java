@@ -57,6 +57,6 @@ public final class MainWindow extends JFrame implements ChangeListener {
     }
 
     public void showNewMazeDialog() {
-        ChooseSizeDialog s = new ChooseSizeDialog(this);
+        NewMazeDialog s = new NewMazeDialog(this);
     }
 }
