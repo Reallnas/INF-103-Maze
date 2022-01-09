@@ -1,6 +1,7 @@
 package ui;
 
 import model.MazeModel;
+import ui.NewMazeWindow.NewMazeDialog;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -58,5 +59,7 @@ public final class MainWindow extends JFrame implements ChangeListener {
 
     public void showNewMazeDialog() {
         NewMazeDialog s = new NewMazeDialog(this);
+        NewMazeDialog.Option option = s.showDialog();
+        System.out.println(option);
     }
 }
