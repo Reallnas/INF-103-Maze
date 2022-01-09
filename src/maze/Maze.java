@@ -112,14 +112,11 @@ public class Maze implements GraphInterface {
     }
 
     public final void initFromTextFile(String fileName) {
-        FileReader fr = null;
-        BufferedReader br = null;
         int newWidth = 0;
         int newHeight = 0;
         ArrayList<String> mazeRepresentation = new ArrayList<>();
-        try {
-            fr = new FileReader(fileName);
-            br = new BufferedReader(fr);
+        try (FileReader fr = new FileReader(fileName);
+             BufferedReader br = new BufferedReader(fr)) {
             String str = br.readLine();
             while (str != null) {
                 //System.out.println(str);
@@ -133,17 +130,8 @@ public class Maze implements GraphInterface {
                 str = br.readLine();
             }
         } catch (Exception e) {
-            System.out.print(e);
+            e.printStackTrace();
             return;
-        } finally {
-            try {
-                fr.close();
-            } catch (Exception e) {
-            }
-            try {
-                br.close();
-            } catch (Exception e) {
-            }
         }
         initializeEmptyMaze(newWidth, newHeight);
         try {
@@ -169,7 +157,7 @@ public class Maze implements GraphInterface {
                 }
             }
         } catch (MazeReadingException mre) {
-            System.out.print(mre);
+            mre.printStackTrace();
         }
 
         System.out.printf("New Maze Width : %d%n", width);
@@ -177,12 +165,8 @@ public class Maze implements GraphInterface {
     }
 
     public final void saveToTextFile(String fileName) {
-        FileOutputStream fos = null;
-        PrintWriter pw = null;
-        try {
-            fos = new FileOutputStream(fileName);
-            pw = new PrintWriter(fos);
-
+        try (FileOutputStream fos = new FileOutputStream(fileName);
+             PrintWriter pw = new PrintWriter(fos)) {
             for (int y = 0; y < this.height; y++) {
                 for (int x = 0; x < this.width; x++) {
                     //System.out.print(this.boxGrid.get(x).get(y).getFileRepresentation());
@@ -192,16 +176,7 @@ public class Maze implements GraphInterface {
             }
             pw.flush();
         } catch (Exception e) {
-            System.out.print(e);
-        } finally {
-            try {
-                fos.close();
-            } catch (Exception e) {
-            }
-            try {
-                pw.close();
-            } catch (Exception e) {
-            }
+            e.printStackTrace();
         }
     }
 
