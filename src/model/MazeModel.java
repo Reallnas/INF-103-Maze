@@ -60,10 +60,9 @@ public final class MazeModel {
             return false;
 
         System.out.printf("Saving to file: %s\n", currentFile);
-        maze.saveToTextFile(currentFile);
         modified = false;
         stateChanges();
-        return true;
+        return maze.saveToTextFile(currentFile);
     }
 
     /**

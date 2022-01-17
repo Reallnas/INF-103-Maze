@@ -164,7 +164,7 @@ public class Maze implements GraphInterface {
         System.out.printf("New Maze Height : %d%n", height);
     }
 
-    public final void saveToTextFile(String fileName) {
+    public final boolean saveToTextFile(String fileName) {
         try (FileOutputStream fos = new FileOutputStream(fileName);
              PrintWriter pw = new PrintWriter(fos)) {
             for (int y = 0; y < this.height; y++) {
@@ -177,7 +177,10 @@ public class Maze implements GraphInterface {
             pw.flush();
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
+
+        return true;
     }
 
     public final void printWithPath(ASetInterface path) {
