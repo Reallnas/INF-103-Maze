@@ -3,7 +3,7 @@ import dijkstra.PreviousInterface;
 import maze.Maze;
 import ui.MainWindow;
 
-public class MainTest {
+public class Main {
 
     public static void main(String[] args) {
         Maze m = new Maze();
