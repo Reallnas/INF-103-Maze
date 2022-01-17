@@ -60,30 +60,10 @@ public final class MazeModel {
             int boxX = mb.getX();
             int boxY = mb.getY();
             MazeBox box = boxes.get(boxX).get(boxY);
-
-            //TODO: Maybe make MazeModel inherit from Maze and make several subclasses of *Box to have the
-            // color linked to the type of the box instead of this switch
             char boxType = mb.getFileRepresentation();
             //System.out.printf("%d %d %c%n",mb.getX(),mb.getY(),boxType);
-            switch (boxType) {
-                case 'E':
-                    box.setBackgroundColor(Color.WHITE);
-                    break;
-                case 'W':
-                    box.setBackgroundColor(Color.DARK_GRAY);
-                    break;
-                case 'A':
-                    box.setBackgroundColor(Color.GREEN);
-                    break;
-                case 'D':
-                    box.setBackgroundColor(Color.RED);
-                    break;
-                default:
-                    box.setBackgroundColor(Color.MAGENTA);
-            }
-            if (path != null && path.contains(mb) && boxType != 'A' && boxType != 'D') {
-                box.setBackgroundColor(Color.YELLOW);
-            }
+            box.setBackgroundColorFromRepresentation(boxType);
+            box.markAsInPath( path != null && path.contains(mb));
         }
         stateChanges();
     }
@@ -230,7 +210,7 @@ public final class MazeModel {
         if (maze.canFindAPath()) {
             System.out.println("Finding a Path...");
             path = maze.getPathToGoal();
-            if(hasFoundAPath())
+            if (hasFoundAPath())
                 updateBoxesColor();
         }
     }
