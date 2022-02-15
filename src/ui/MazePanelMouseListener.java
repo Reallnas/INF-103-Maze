@@ -12,7 +12,17 @@ public final class MazePanelMouseListener extends MouseAdapter {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        mainWindow.getMazeModel().setSelection(e.getX(), e.getY());
+    public void mouseClicked(MouseEvent me) {
+        switch(me.getButton()) {
+            case MouseEvent.BUTTON1:
+                //Left Click
+                mainWindow.getMazeModel().setSelection(me.getX(), me.getY());
+                break;
+            case MouseEvent.BUTTON3:
+                //Right Click
+                mainWindow.getMazeModel().changeHoveredBoxType(me.getX(),me.getY());
+                break;
+        }
+
     }
 }

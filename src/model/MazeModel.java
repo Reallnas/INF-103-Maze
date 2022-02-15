@@ -274,14 +274,41 @@ public final class MazeModel {
     }
 
     /**
+     * TODO
+     * @param x
+     * @param y
+     */
+    private void changeBoxType(int x, int y) {
+        if(x >= 0 && x<nbBoxX && y>=0 && y<nbBoxY) {
+            modified = true;
+            maze.changeBoxType(x, y);
+            updateBoxesColor();
+        }
+    }
+
+    /**
      * Set the current selected box as a wall if it was empty or as an empty box if it was a wall.
      * Nothing happens if no box is currently selected.
      */
     public void changeSelectedBoxType() {
         if (hasASelectedBox()) {
-            modified = true;
-            maze.changeBoxType(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
-            updateBoxesColor();
+            changeBoxType(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
+        }
+    }
+
+    /**
+     * TODO
+     * @param x
+     * @param y
+     */
+    public void changeHoveredBoxType(int x, int y) {
+        for (ArrayList<MazeBox> col : boxes) {
+            for (MazeBox box : col) {
+                if (box.contains(x, y)) {
+                    changeBoxType(box.getXCoordinate(),box.getYCoordinate());
+                    return;
+                }
+            }
         }
     }
 
