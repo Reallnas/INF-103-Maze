@@ -1,5 +1,7 @@
 package model;
 
+import maze.*;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -18,7 +20,7 @@ public final class MazeBox extends Rectangle2D.Float {
     private final int XBoxCoordinate;
     private final int YBoxCoordinate;
     private Color color = Color.WHITE;
-    private char representation = 'E';
+    private MBox linkedBox = null;
     private boolean isInPath = false;
 
     public MazeBox(int x, int y, float w, float h) {
@@ -39,34 +41,32 @@ public final class MazeBox extends Rectangle2D.Float {
         this.color = color;
     }
 
-    public void setBackgroundColorFromRepresentation(char representation) {
-        //TODO: Maybe make MazeModel inherit from Maze and make several subclasses of *Box to have the
-        // color linked to the type of the box instead of this switch
-        // Problem : Java only supports single inheritance which is a problem for the boxes
-        // and we would need to override the initFromTextFile and saveToTextFile among other.
-        // I don't think it is worth it just to get rid of this switch.
-        this.representation = representation;
-        switch (representation) {
-            case 'E':
-                this.color = Color.WHITE;
-                break;
-            case 'W':
-                this.color = Color.DARK_GRAY;
-                break;
-            case 'A':
-                this.color = Color.GREEN;
-                break;
-            case 'D':
-                this.color =Color.RED;
-                break;
-            default:
-                this.color = Color.MAGENTA;
+    public void setBackgroundColorFromBox(MBox box) {
+        // Question: Maybe make MazeModel inherit from Maze and make several subclasses of *Box to have the
+        // color linked to the type of the box instead this if/else and to eliminate the use of instanceof.
+        // Problem : Java only supports single inheritance which is a problem for the boxes,
+        // and we would need to override the initFromTextFile and saveToTextFile among others.
+        // I don't think it is worth it just to get rid of this if/else.
+        this.linkedBox = box;
+        //The Abox and Dbox checks need to happen before the EBox check as both inherit from it.
+        if (box instanceof ABox) {
+            this.color = Color.GREEN;
+        } else if (box instanceof DBox) {
+            this.color = Color.RED;
+        } else if (box instanceof EBox) {
+            this.color = Color.WHITE;
+        } else if (box instanceof WBox) {
+            this.color = Color.DARK_GRAY;
+        } else {
+            //Default case: should never happen
+            System.out.printf("Unknown box type: %s%n", box.getClass());
+            this.color = Color.MAGENTA;
         }
     }
 
     public void markAsInPath(boolean isInPath) {
         this.isInPath = isInPath;
-        if(isInPath && representation != 'A' && representation != 'D') {
+        if (isInPath && !(linkedBox instanceof ABox) && !(linkedBox instanceof DBox)) {
             this.color = Color.YELLOW;
         }
     }

@@ -79,9 +79,8 @@ public final class MazeModel {
             int boxX = mb.getX();
             int boxY = mb.getY();
             MazeBox box = boxes.get(boxX).get(boxY);
-            char boxType = mb.getFileRepresentation();
             //System.out.printf("%d %d %c%n",mb.getX(),mb.getY(),boxType);
-            box.setBackgroundColorFromRepresentation(boxType);
+            box.setBackgroundColorFromBox(mb);
             box.markAsInPath(path != null && path.contains(mb));
         }
         stateChanges();
