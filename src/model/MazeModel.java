@@ -34,6 +34,7 @@ public final class MazeModel {
 
     /**
      * Associate a file with the model. This file will be used for future saves.
+     *
      * @param filename The path of the file to associate with the model.
      */
     public void setCurrentFile(String filename) {
@@ -44,6 +45,7 @@ public final class MazeModel {
 
     /**
      * Test if the model was recently loaded from or saved to a file.
+     *
      * @return true if the model was recently loaded from or saved to a file; false otherwise.
      */
     public boolean hasACurrentFile() {
@@ -52,6 +54,7 @@ public final class MazeModel {
 
     /**
      * Save the maze to the file associated with the model.
+     *
      * @return true if there was no error during the saving process; false if there was an error, there was no file
      * associated (loaded from or saved to) or no modifications were made since the previous save.
      */
@@ -79,7 +82,7 @@ public final class MazeModel {
             char boxType = mb.getFileRepresentation();
             //System.out.printf("%d %d %c%n",mb.getX(),mb.getY(),boxType);
             box.setBackgroundColorFromRepresentation(boxType);
-            box.markAsInPath( path != null && path.contains(mb));
+            box.markAsInPath(path != null && path.contains(mb));
         }
         stateChanges();
     }
@@ -100,6 +103,7 @@ public final class MazeModel {
 
     /**
      * Load the maze from a file. It must have a rectangular shape with no hole.
+     *
      * @param filename The path of the file to associate with the model.
      */
     public void loadFromFile(String filename) {
@@ -125,6 +129,7 @@ public final class MazeModel {
 
     /**
      * Add a listener to notify when the model is modified and the view need to be updated.
+     *
      * @param listener A listener.
      */
     public void addObserver(ChangeListener listener) {
@@ -134,7 +139,8 @@ public final class MazeModel {
     /**
      * Signal to the model that the view's size changed and to adapt the maze to fit the new size.
      * It is useful when there is only one view, and we want to resize the maze when its size changes.
-     * @param width The width of the windows to fit.
+     *
+     * @param width  The width of the windows to fit.
      * @param height The height of the windows to fit.
      */
     public void notifyWindowSizeChange(float width, float height) {
@@ -145,6 +151,7 @@ public final class MazeModel {
 
     /**
      * Test if the file was modified since the last save or if the maze was just reset (to allow saving an empty maze).
+     *
      * @return true if the maze was modified since the last save or if the maze was just reset; false otherwise.
      */
     public boolean isModified() {
@@ -153,6 +160,7 @@ public final class MazeModel {
 
     /**
      * Paint the boxes on the given graphic surface.
+     *
      * @param g The graphic surface to paint the boxes on.
      */
     public void paintBoxes(Graphics g) {
@@ -167,6 +175,7 @@ public final class MazeModel {
 
     /**
      * Test if a box has been selected.
+     *
      * @return true if a box has been selected by the user; false otherwise.
      */
     public boolean hasASelectedBox() {
@@ -175,6 +184,7 @@ public final class MazeModel {
 
     /**
      * Allow to set the given MazeBox as selected.
+     *
      * @param selectedBox The box to set as selected.
      */
     public void setSelectedBox(MazeBox selectedBox) {
@@ -203,6 +213,7 @@ public final class MazeModel {
 
     /**
      * Test if the current selected box is a wall.
+     *
      * @return true if the current selected box is a wall; false otherwise.
      */
     public boolean isSelectedBoxAWall() {
@@ -211,6 +222,7 @@ public final class MazeModel {
 
     /**
      * Test if the current selected box is an empty box, the start or the goal.
+     *
      * @return true if the current selected box is an empty box, the start or the goal; false otherwise.
      */
     public boolean isSelectedBoxEmpty() {
@@ -219,24 +231,32 @@ public final class MazeModel {
     }
 
     /**
+     * Get the box which contains the point at the specified coordinates.
+     *
+     * @param pixX The X coordinates of the point (in pixels).
+     * @param pixY The Y coordinates of the point (in pixels).
+     * @return A reference to the box which contains the point at the specified coordinates if there is one; null otherwise.
+     */
+    private MazeBox getBox(int pixX, int pixY) {
+        for (ArrayList<MazeBox> col : boxes) {
+            for (MazeBox box : col) {
+                if (box.contains(pixX, pixY)) {
+                    return box;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * Set as selected the box that contains the given coordinates.
      * If it was already selected, it will be unselected.
+     *
      * @param x The x coordinate (in pixel) of the selection.
      * @param y The y coordinate (in pixel) of the selection.
      */
     public void setSelection(int x, int y) {
-        for (ArrayList<MazeBox> col : boxes) {
-            for (MazeBox box : col) {
-                if (box.contains(x, y)) {
-                    if (box == selectedBox)
-                        setSelectedBox(null);
-                    else
-                        setSelectedBox(box);
-                    return;
-                }
-            }
-        }
-        setSelectedBox(null);
+        setSelectedBox(getBox(x, y));
     }
 
     /**
@@ -274,12 +294,13 @@ public final class MazeModel {
     }
 
     /**
-     * TODO
-     * @param x
-     * @param y
+     * Set the box at the specified coordinates as a wall if it was empty or as an empty box if it was a wall
+     *
+     * @param x The X coordinate of the box
+     * @param y The Y coordinate of the box
      */
     private void changeBoxType(int x, int y) {
-        if(x >= 0 && x<nbBoxX && y>=0 && y<nbBoxY) {
+        if (x >= 0 && x < nbBoxX && y >= 0 && y < nbBoxY) {
             modified = true;
             maze.changeBoxType(x, y);
             updateBoxesColor();
@@ -297,24 +318,23 @@ public final class MazeModel {
     }
 
     /**
-     * TODO
-     * @param x
-     * @param y
+     * Set the box which contains the point at the specified coordinates as a wall if it was empty or as an empty box if it was a wall.
+     * If no box contains the specified point, nothing happens.
+     *
+     * @param pixX The X coordinates of the point (in pixels).
+     * @param pixY The Y coordinates of the point (in pixels).
      */
-    public void changeHoveredBoxType(int x, int y) {
-        for (ArrayList<MazeBox> col : boxes) {
-            for (MazeBox box : col) {
-                if (box.contains(x, y)) {
-                    changeBoxType(box.getXCoordinate(),box.getYCoordinate());
-                    return;
-                }
-            }
+    public void changeHoveredBoxType(int pixX, int pixY) {
+        MazeBox mazeBox = getBox(pixX, pixY);
+        if (mazeBox != null) {
+            changeBoxType(mazeBox.getXCoordinate(), mazeBox.getYCoordinate());
         }
     }
 
     /**
      * Test if the maze contains a start and a goal.
      * Warning: It doesn't tell if a path exists between the start and the goal, see the "hasFoundAPath" method for that.
+     *
      * @return true if the maze contains a start and a goal; false otherwise.
      */
     public boolean canFindAPath() {
@@ -345,6 +365,7 @@ public final class MazeModel {
 
     /**
      * Create a new maze of the given size containing only empty boxes.
+     *
      * @param nbBoxX The number of box horizontally
      * @param nbBoxY The number of box vertically
      */
@@ -366,6 +387,7 @@ public final class MazeModel {
 
     /**
      * Test if a path has been found between the start and the goal.
+     *
      * @return true if "FindAPath" has been run before and found a path; false otherwise.
      */
     public boolean hasFoundAPath() {
