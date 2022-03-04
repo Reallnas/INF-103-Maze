@@ -14,9 +14,13 @@ public abstract class MBox implements VertexInterface {
         this.y = y;
     }
 
-    public String getLabel() {
-        return "X:" + this.x + ", Y:" + this.y;
+    public String getDebugCoords() {
+        return String.format("[x=%d,y=%d]",x,y);
     }
+
+    public abstract String getLabel();
+
+    public abstract char getFileRepresentation();
 
     public final int getX() {
         return this.x;
@@ -37,6 +41,4 @@ public abstract class MBox implements VertexInterface {
     public String toString() {
         return this.getLabel();
     }
-
-    public abstract char getFileRepresentation();
 }

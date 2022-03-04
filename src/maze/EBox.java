@@ -1,5 +1,8 @@
 package maze;
 
+/**
+ * EBox stands for "Empty Box"
+ */
 public class EBox extends MBox {
 
     public EBox(Maze maze, int x, int y) {
@@ -8,7 +11,7 @@ public class EBox extends MBox {
 
     @Override
     public String getLabel() {
-        return "Type:Empty, " + super.getLabel();
+        return String.format("Type:Empty %s", getDebugCoords());
     }
 
     public final boolean isWalkable() {

@@ -1,5 +1,8 @@
 package maze;
 
+/**
+ * ABox stands for "Arrival Box"
+ */
 public final class ABox extends EBox {
 
     public ABox(Maze maze, int x, int y) {
@@ -8,7 +11,7 @@ public final class ABox extends EBox {
 
     @Override
     public String getLabel() {
-        return "Type:Arrivée, " + super.getLabel();
+        return String.format("Type:Arrival %s", getDebugCoords());
     }
 
     @Override

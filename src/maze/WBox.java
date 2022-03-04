@@ -1,5 +1,8 @@
 package maze;
 
+/**
+ * WBox stands for "Wall Box"
+ */
 public final class WBox extends MBox {
 
     public WBox(Maze maze, int x, int y) {
@@ -8,7 +11,7 @@ public final class WBox extends MBox {
 
     @Override
     public String getLabel() {
-        return "Type:Wall, " + super.getLabel();
+        return String.format("Type:Wall %s", getDebugCoords());
     }
 
     public boolean isWalkable() {

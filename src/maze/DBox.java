@@ -1,5 +1,8 @@
 package maze;
 
+/**
+ * DBox stands for "Departure Box"
+ */
 public final class DBox extends EBox {
 
     public DBox(Maze maze, int x, int y) {
@@ -8,7 +11,7 @@ public final class DBox extends EBox {
 
     @Override
     public String getLabel() {
-        return "Type:Départ, " + super.getLabel();
+        return String.format("Type:Departure %s", getDebugCoords());
     }
 
     @Override
