@@ -214,6 +214,22 @@ public class Maze implements GraphInterface {
         }
     }
 
+    private void removeStart() {
+        if (root != null) {
+            int oldRootX = root.getX();
+            int oldRootY = root.getY();
+            this.boxGrid.get(oldRootX).set(oldRootY, new EBox(this, oldRootX, oldRootY));
+        }
+    }
+
+    private void removeGoal() {
+        if (goal != null) {
+            int oldGoalX = goal.getX();
+            int oldGoalY = goal.getY();
+            this.boxGrid.get(oldGoalX).set(oldGoalY, new EBox(this, oldGoalX, oldGoalY));
+        }
+    }
+
     public void setNewStart(int x, int y) {
         System.out.printf("New Start %d %d%n", x, y);
         //If we overwrite the current goal, we need to update the reference to avoid referencing an outdated Box
@@ -221,13 +237,9 @@ public class Maze implements GraphInterface {
             goal = null;
         }
 
-        if (root != null) {
-            int oldRootX = root.getX();
-            int oldRootY = root.getY();
-            this.boxGrid.get(oldRootX).set(oldRootY, new EBox(this, oldRootX, oldRootY));
-        }
-        this.boxGrid.get(x).set(y, new DBox(this, x, y));
-        this.root = (DBox) this.boxGrid.get(x).get(y);
+        removeStart();
+        this.root = new DBox(this, x, y);
+        this.boxGrid.get(x).set(y, this.root);
     }
 
     public void setNewGoal(int x, int y) {
@@ -237,14 +249,9 @@ public class Maze implements GraphInterface {
             root = null;
         }
 
-        if (goal != null) {
-            int oldGoalX = goal.getX();
-            int oldGoalY = goal.getY();
-            this.boxGrid.get(oldGoalX).set(oldGoalY, new EBox(this, oldGoalX, oldGoalY));
-        }
-        this.boxGrid.get(x).set(y, new ABox(this, x, y));
-        this.goal = (ABox) this.boxGrid.get(x).get(y);
-
+        removeGoal();
+        this.goal = new ABox(this, x, y);
+        this.boxGrid.get(x).set(y, this.goal);
     }
 
     public void changeBoxType(int x, int y) {
@@ -255,7 +262,7 @@ public class Maze implements GraphInterface {
             root = null;
         }
 
-        if (boxGrid.get(x).get(y).getFileRepresentation() == 'W') {
+        if (!boxGrid.get(x).get(y).isWalkable()) {
             this.boxGrid.get(x).set(y, new EBox(this, x, y));
             System.out.printf("Changed to Empty Box %d %d%n", x, y);
         } else {
