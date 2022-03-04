@@ -30,7 +30,7 @@ public final class ChangeBoxTypeMenuItem extends JMenuItem implements ActionList
         if (hasASelectedBox) {
             if (mazeModel.isSelectedBoxAWall())
                 setText("Change To Empty Box");
-            else if (mazeModel.isSelectedBoxEmpty())
+            else
                 setText("Change To Wall Box");
         } else {
             setText("Change Box Type");

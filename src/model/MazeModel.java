@@ -217,17 +217,7 @@ public final class MazeModel {
      * @return true if the current selected box is a wall; false otherwise.
      */
     public boolean isSelectedBoxAWall() {
-        return maze.getVertexTypeByCoords(selectedBox.getXCoordinate(), selectedBox.getYCoordinate()) == 'W';
-    }
-
-    /**
-     * Test if the current selected box is an empty box, the start or the goal.
-     *
-     * @return true if the current selected box is an empty box, the start or the goal; false otherwise.
-     */
-    public boolean isSelectedBoxEmpty() {
-        char type = maze.getVertexTypeByCoords(selectedBox.getXCoordinate(), selectedBox.getYCoordinate());
-        return type == 'E' || type == 'A' || type == 'D';
+        return !maze.getMBoxByCoords(selectedBox.getXCoordinate(), selectedBox.getYCoordinate()).isWalkable();
     }
 
     /**

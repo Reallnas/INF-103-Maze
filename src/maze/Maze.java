@@ -268,7 +268,7 @@ public class Maze implements GraphInterface {
         return root != null && goal != null;
     }
 
-    public char getVertexTypeByCoords(int x, int y) {
-        return boxGrid.get(x).get(y).getFileRepresentation();
+    public MBox getMBoxByCoords(int x, int y) {
+        return boxGrid.get(x).get(y);
     }
 }
