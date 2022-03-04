@@ -338,8 +338,7 @@ public final class MazeModel {
         if (maze.canFindAPath()) {
             System.out.println("Finding a Path...");
             path = maze.getPathToGoal();
-            if (hasFoundAPath())
-                updateBoxesColor();
+            updateBoxesColor();
         }
     }
 
